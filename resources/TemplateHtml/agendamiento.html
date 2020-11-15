@@ -41,18 +41,18 @@
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <h1 class="logo"><a href="inicio.html">Dental</a></h1>
+      <h1 class="logo"><a href="inicio.html">DentalFriends</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="inicio.html">Inicio</a></li>
+          <li><a href="inicio.html">Inicio</a></li>
           <li><a href="profesionales.html">Profesionales</a></li>
           <li><a href="cuidadodental.html">Cuidado dental</a></li>
           <li><a href="tratamientos.html">Tratamientos</a></li>
           <li><a href="contactenos.html">Contáctenos</a></li>
-          <li><a href="agendamiento.html">Agendamiento de Citas</a></li>
+          <li class="active"><a href="agendamiento.html">Agendamiento de Citas</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -78,35 +78,35 @@
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <form>
-          <label>Nombre:</label>
-          <br>
-          <input type="text">
-          <br>
-          <label>Apellido:</label>
-          <br>
-          <input type="text">
-          <br>
-          <label>Cedula:</label>
-          <br>
-          <input type="text">
-          <br>
-          <label>Motivo de la consulta:</label>
-          <br>
-          <input type="text">
-          <br>
-          <label>Agencia</label>
-          <br>
-          <label>Norte</label>
-          <input type="checkbox" >
-          <label>Centro</label>
-          <input type="checkbox" >
-          <label>Sur</label>
-          <input type="checkbox" >
-          <br>
-          <input type="submit" value="Reservar">
-        </form>
+        <div class="section-title">
 
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre y Apellidos" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Motivo de consulta" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Observaciones" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+        
       </div>
     </section><!-- End Portfolio Section -->
 
