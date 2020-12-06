@@ -1,0 +1,35 @@
+{
+  "name": "proyecto-test",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "ejs": "~2.6.1",
+    "express": "~4.16.1",
+    "express-session": "^1.17.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "~1.9.1",
+    "node-sass-middleware": "0.11.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*"
+    ],
+    "watch": [
+      "public/",
+      "routes/",
+      "views/",
+      "models/",
+      "js/"
+    ],
+    "delay": "1000"
+  }
+}

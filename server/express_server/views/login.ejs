@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <link rel="stylesheet" href="styles/login.css"> 
+    <link rel="stylesheet" href="styles/alertify.min.css">
+    <link rel="stylesheet" href="styles/themes/default.css">
+</head> 
+<body>  
+ 
+    <div class="login">
+        <h1>Inicio de sesion</h1>
+        <form id="formLogin">
+            <p><input type="text" id="username" value="" placeholder="Usuario"></p>                         
+
+            <% if(action=='register') { %>
+                <p><input type="text" id="email" value="" placeholder="Email"></p> 
+                <p><input type="hidden" id=<%= 'register' %>></p>
+            <% } %>
+            
+            <p><input type="password" id="password" value="" placeholder="Clave"></p>
+
+            <p class="submit"><input id="sendLogin" type="submit" name="commit" value="Login"></p> 
+            
+            <% if(action!='register') { %> 
+                <p>
+                    <label>
+                        <a href="/register">Registrarse</a> - <a href="/home">Modo invitado</a> 
+                    </label>
+                </p> 
+            <% } %> 
+ 
+        </form>
+    </div> 
+
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="scripts/alertify.min.js"></script>
+    <script src="scripts/utils.js"></script>
+    <script src="scripts/login.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+-- EJS
+<table>
+<% list.forEach( element => { %>    
+    <tr>
+    <td> <%= element.name %> </td>          
+    <td> <%= element.age %> </td> 
+    </tr> 
+<% }) %>
+</table>  
+<%- include('footer'); %>
+
+
+-- JS
+
+async function crear() {
+  const jane = await User.create({ username: "Jane" });
+  console.log("Jane's auto-generated ID:", jane.username, jane.id); 
+  const users = await User.findAll(); 
+  users.forEach(element => {
+    console.log(element.id, " ", element.username)
+  });
+  await User.destroy({
+    where: {
+      username: "Jane"
+    }
+  });
+  let users2 = await User.findAll(); 
+  users2.forEach(element => {
+    console.log(element.id, " ", element.username)
+  }); 
+}
+
+-- SASS
+
+
+
+-- POSTGRES
+select * from passwords where crypt('password2', pass) = pass
