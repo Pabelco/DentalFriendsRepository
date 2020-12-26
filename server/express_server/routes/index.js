@@ -19,6 +19,30 @@ router.get('/home', function (req, res, next) {
     res.render(`home`, {})
 });
 
+router.get('/aboutus', function (req, res, next) {   
+  res.render(`aboutus`, {})
+});
+
+router.get('/appointment', function (req, res, next) {   
+  res.render(`appointment`, {})
+});
+
+router.get('/dentalcare', function (req, res, next) {   
+  res.render(`dentalcare`, {})
+});
+
+router.get('/portafolio', function (req, res, next) {   
+  res.render(`portafolio`, {})
+});
+
+router.get('/professional', function (req, res, next) {   
+  res.render(`professional`, {})
+});
+
+router.get('/treatment', function (req, res, next) {   
+  res.render(`treatment`, {})
+});
+
 /* 
  POST METHODS 
 */
