@@ -43,6 +43,10 @@ router.get('/treatment', function (req, res, next) {
   res.render(`treatment`, {})
 });
 
+router.get('/medicalResume', function(req, res, next) {
+  res.render(`medicalResume`,{})
+})
+
 /* 
  POST METHODS 
 */
