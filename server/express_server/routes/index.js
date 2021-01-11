@@ -47,6 +47,10 @@ router.get('/medicalResume', function(req, res, next) {
   res.render(`medicalResume`,{})
 })
 
+router.get('/profile', function(req, res, next) {
+  res.render(`profile`,{})
+})
+
 /* 
  POST METHODS 
 */
@@ -85,5 +89,7 @@ router.post('/register', async (req, res, next) => {
       res.send({ message: 0 })
     })
 })
+
+
 
 module.exports = router;

@@ -79,70 +79,83 @@
         <div class="container" data-aos="fade-up">
 
           <div class="section-title">
-            <h2>Resumen Medico de Pacientes</h2>
-            <p>Por favor, seleccione el paciente a consultar</p>
+            <h2>Mi Perfil</h2>
+            <p>Por favor, ingrese los siguientes datos</p>
           </div>
 
           <div class="mt-5 mt-lg-0">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              
               <div class="form-row">
                 <div class="col-md-2"></div>
-                <label class="col-form-label col-md-2">Seleccione paciente:</label>
-                <div class="col-md-6 form-group">
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Pepito Flores</option>
-                    <option>El Pepe</option>
-                    <option>El zetch</option> 
-                  </select>
-                </div>
+                <label  for="birth"  class="col-form-label col-md-2 ">Fecha de cumpleaños:</label>
+                <input class="col-form-input col-md-2" type="text" name="birth" id="birth"/>
                 <div class="col-md-2"></div>
               </div>
-            </form>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Prueba de Modal
-            </button>
-          </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="age"  class="col-form-label col-md-2">Edad:</label>
+                <input class="col-form-input col-md-2" type="text" name="age" id="age"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="phone"  class="col-form-label col-md-2">Télefono:</label>
+                <input class="col-form-input col-md-2" type="text" name="phone" id="phone"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="recognitions"  class="col-form-label col-md-2">Reconocimientos:</label>
+                <input class="col-form-input col-md-2" type="text" name="recognitions" id="recognitions"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="Degree"  class="col-form-label col-md-2">Titulo:</label>
+                <input class="col-form-input col-md-2" type="text" name="Degree" id="Degree"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="school"  class="col-form-label col-md-2">Universidad:</label>
+                <input class="col-form-input col-md-2" type="text" name="school" id="school"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="phrase"  class="col-form-label col-md-2">Frase Personal:</label>
+                <input class="col-form-input col-md-2" type="text" name="phrase" id="phrase"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="picture-url"  class="col-form-label col-md-2">Añadir link  su imagen de perfil:</label>
+                <input class="col-form-input col-md-2" type="text" name="picture-url" id="picture-url"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="address"  class="col-form-label col-md-2">direccion:</label>
+                <input class="col-form-input col-md-2" type="text" name="address" id="address"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <label  for="id"  class="col-form-label col-md-2">ID de usuario:</label>
+                <input class="col-form-input col-md-2" type="text" name="id" id="id"/>
+                <div class="col-md-2"></div>
+              </div>
+              <div class="form-row">
+                <input type="submit" class="btn btn-primary center col-md-2" id="save" value="guadar"/>
 
-          <div>
-            <table class="table">
-              <tr>
-                <th>Company</th>
-                <th>Contact</th>
-                <th>Country</th>
-              </tr>
-              <tr>
-                <td>Alfreds Futterkiste</td>
-                <td>Maria Anders</td>
-                <td>Germany</td>
-              </tr>
-              <tr>
-                <td>Centro comercial Moctezuma</td>
-                <td>Francisco Chang</td>
-                <td>Mexico</td>
-              </tr>
-              <tr>
-                <td>Ernst Handel</td>
-                <td>Roland Mendel</td>
-                <td>Austria</td>
-              </tr>
-              <tr>
-                <td>Island Trading</td>
-                <td>Helen Bennett</td>
-                <td>UK</td>
-              </tr>
-              <tr>
-                <td>Laughing Bacchus Winecellars</td>
-                <td>Yoshi Tannamuri</td>
-                <td>Canada</td>
-              </tr>
-              <tr>
-                <td>Magazzini Alimentari Riuniti</td>
-                <td>Giovanni Rovelli</td>
-                <td>Italy</td>
-              </tr>
-            </table>
+              </div>
+                
+
+            </form><br>
             
           </div>
+
 
         </div>
       </section><!-- End Portfolio Section -->
