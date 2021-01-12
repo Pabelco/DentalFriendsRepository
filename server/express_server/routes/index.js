@@ -35,9 +35,22 @@ router.get('/portafolio', function (req, res, next) {
   res.render(`portafolio`, {})
 });
 
+router.get('/professional', function (req, res, next) {
+  
+  sequelize.query(`Select * from public.user_details inner join public.user_ ON user_details.id_user = user_.id`)
+  .then(data => {
+    if (data){
+      res.render(`professional`, {title:"profesionales",docs:data[0]});
+    }else
+      res.send('nada')
+  }).catch(err => {
+    console.log(err.message);
+    res.send({message:0});
+  })   
+  
+});
 
-
-router.get('/treatment', function (req, res, next) {   
+router.get('/treatment', function (req, res, next) {
   res.render(`treatment`, {})
 });
 

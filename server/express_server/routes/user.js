@@ -1,15 +1,12 @@
 var express = require('express');
 var router = express.Router();
 
-var sequelize = require('../models/db')
+//var sequelize = require('../models/db')
 const jwtSecurity = require('../configs/jwtAuth.js')
 
 /*
 Get methods
 */
-router.get('/professional', function (req, res, next) {   
-  res.render(`professional`, {})
-});
 
 router.get('/profile', function(req, res, next) {
   res.render(`profile`,{})
