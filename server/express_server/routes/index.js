@@ -35,9 +35,7 @@ router.get('/portafolio', function (req, res, next) {
   res.render(`portafolio`, {})
 });
 
-router.get('/professional', function (req, res, next) {   
-  res.render(`professional`, {})
-});
+
 
 router.get('/treatment', function (req, res, next) {   
   res.render(`treatment`, {})
@@ -47,13 +45,12 @@ router.get('/medicalResume', function(req, res, next) {
   res.render(`medicalResume`,{})
 })
 
-router.get('/profile', function(req, res, next) {
-  res.render(`profile`,{})
-})
+
 
 /* 
  POST METHODS 
 */
+
 router.post('/login', async (req, res, next) => {
   let requestBody = req.body
   sequelize.query(`select login_user ('${requestBody.username}', '${requestBody.password}')`)
