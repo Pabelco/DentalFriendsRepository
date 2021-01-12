@@ -12,6 +12,9 @@ $(document).ready(function () {
             center: 'title',
             right: ''
         },
+        validRange: {
+            start: Date.now() 
+        },
         slotLabelFormat: {
             hour: 'numeric',
             minute: '2-digit',
@@ -69,3 +72,21 @@ function getAvaliablesAppointment() {
     });
     return appointmentAvaliable;
 }
+
+async function loadDoctors() {
+    let listDoctors = await getFetch('/user/all')    
+    let htmlSelect = `` 
+    listDoctors.forEach( element => {
+            htmlSelect += `<option value=${element.id}>${element.user_name}</option>` 
+    }) 
+    $('#selectDoctor').html(htmlSelect);      
+} 
+
+$('#selectDoctor').change(function (e) {   
+});
+
+function initPage() {
+    loadDoctors()
+}
+
+initPage()

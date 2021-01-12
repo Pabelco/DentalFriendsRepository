@@ -1,3 +1,8 @@
+function resetCredentials() {
+    sessionStorage.setItem("username", null);
+    sessionStorage.setItem("token", null);
+}
+
 async function postFetch(url = "", objectSend = {}) {
     let response = await fetch(
         url,
@@ -10,8 +15,40 @@ async function postFetch(url = "", objectSend = {}) {
     var data = await response.json()
     return data
 }
-
-function resetCredentials() {
-    sessionStorage.setItem("username", null); 
-    sessionStorage.setItem("token", null);
+  
+async function getFetch(url = "", objeto = {}) {
+    let parametros = objeto
+    let query = Object.keys(parametros).map(k => encodeURIComponent(k) + '=' +
+        encodeURIComponent(parametros[k])).join('&')
+    let urlEnviar = url + '?' + query
+    let respuesta = await fetch(urlEnviar, { method: "GET", headers: { 'Content-Type': 'application/json', token: sessionStorage.getItem("token") } })
+    var data = await respuesta.json()
+    return data;
 }
+
+async function putFetch(url = "", objectoEnviar = {}) {
+    let response = await fetch(
+        url,
+        {
+            method: "PUT",
+            body: JSON.stringify(objectoEnviar),
+            headers: { 'Content-Type': 'application/json', token: sessionStorage.getItem("token") }
+        }
+    )
+    var data = await response.json()
+    return data
+}
+
+async function deleteFetch(url = "", objectoEnviar = {}) {
+    let response = await fetch(
+        url,
+        {
+            method: "DELETE",
+            body: JSON.stringify(objectoEnviar),
+            headers: { 'Content-Type': 'application/json', token: sessionStorage.getItem("token") }
+        }
+    )
+    var data = await response.json()
+    return data
+}
+

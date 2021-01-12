@@ -35,8 +35,7 @@ router.get('/portafolio', function (req, res, next) {
   res.render(`portafolio`, {})
 });
 
-router.get('/professional', function (req, res, next) {
-  
+router.get('/professional', function (req, res, next) { 
   sequelize.query(`Select * from public.user_details inner join public.user_ ON user_details.id_user = user_.id`)
   .then(data => {
     if (data){
