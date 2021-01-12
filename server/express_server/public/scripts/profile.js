@@ -1,6 +1,6 @@
 $("#formProfile").submit(function(e){
     e.preventDefault();
-    postFetch("/formProfile", {
+    postFetch("/user/formProfile", {
         idCard: $("#id_card").val(),
         picture: $("#picture-url"),
         address: $("#address"),
