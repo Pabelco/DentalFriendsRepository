@@ -80,24 +80,24 @@
 
           <div class="section-title">
             <h2>Resumen Medico de Pacientes</h2>
-            <p>Por favor, seleccione el paciente a consultar</p>
           </div>
 
           <div class="mt-5 mt-lg-0">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form id="searchMedicalResume" method="post" role="form" class="php-email-form">
               <div class="form-row">
                 <div class="col-md-2"></div>
-                <label class="col-form-label col-md-2">Seleccione paciente:</label>
+                <label class="col-form-label col-md-2">Ingrese la cedula de paciente:</label>
                 <div class="col-md-6 form-group">
-                  <select class="form-control" id="exampleFormControlSelect1">
-                    <option>Pepito Flores</option>
-                    <option>El Pepe</option>
-                    <option>El zetch</option> 
-                  </select>
+                  <input class="border border-dark" type="text">
                 </div>
                 <div class="col-md-2"></div>
               </div>
+              <div class="form-row">
+                <div class="col-md-2"></div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+              </div>
             </form>
+
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
               Prueba de Modal
             </button>
@@ -184,7 +184,7 @@
     <script src="assets/js/main.js"></script>
     <script src="scripts/alertify.min.js"></script>
 
-    <script src="scripts/appointment.js"></script>
+    <script src="scripts/medicalResume.js"></script>
 
 
 
