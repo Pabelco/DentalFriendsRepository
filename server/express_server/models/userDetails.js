@@ -1,20 +1,23 @@
 const Sequelize = require('sequelize')
-const sequelize = require('./db')
 const db = require('./db')
+const sequelize = require('./db')
+const user =require('./user')
 
 var userDetails = db.define('user_details', {
     id_details: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-    identityCard: Sequelize.STRING,
-    
+    identity_card: Sequelize.STRING,
     address: Sequelize.STRING,
-    especiality: Sequelize.BOOLEAN,
+    speciality: Sequelize.BOOLEAN,
     details: Sequelize.JSON,
-    pictureUrl: Sequelize.STRING,
-    
+    picture_url: Sequelize.STRING
 }, {
     timestamps: false,
-    freezeTableName: true
+    freezeTableName: false
 })
+userDetails.associate = () => {
+    userDetails.hasMany(user,{
+    });
+}
 
 
 

@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 const userModel = require('../models/user')
+const userDetailsModel = require("../models/userDetails")
 const pacientModel = require('../models/pacient')
 const appointment = require('../models/appointment')
 var validator = require('validator');
@@ -32,24 +33,32 @@ router.post('/', jwtSecurity.authenticateJWT, function (req, res, next) {
 router.post('/formProfile', async (req, res, next) => {
   let requestBody = req.body;
   let dict = {
-    "birthday": $(requestBody.birth),
-    "age": $(requestBody.age),
-    "phone": $(requestBody.phone),
-    "recognitions": [$(requestBody.recog)],
-    "university": $(requestBody.school),
-    "frase": $(requestBody.phrase)
+    "birthday": requestBody.birth,
+    "age": requestBody.age,
+    "phone": requestBody.phone,
+    "recognitions": [requestBody.recog],
+    "university": requestBody.school,
+    "frase": requestBody.phrase
   };
-
-  sequelize.query(`INSERT INTO public.user_details(identity_card,picture_url,address,speciality,details,id_user) VALUES ('${requestBody.idCard}', '${requestBody.picture}', '${requestBody.address}', '${requestBody.degree}', '${dict}', '${requestBody.id_}')`)
-    .then(response => {
-      if (response)
-        res.send({ message: 1 })
-      else
-        res.send({ message: 0 })
-    }).catch(err => {
-      console.log(err.message);
-      res.send({ message: 0 });
-    })
+  //create instance
+  const detail = userDetailsModel.build({
+    identity_card: requestBody.idCard,
+    address: requestBody.address,
+    speciality: requestBody.degree,
+    details: dict,
+    picture_url: requestBody.picture_url
+  })
+  //Insert into db
+  await detail.save()
+  .then(dbresponse => {
+    if(dbresponse){
+      res.send({message:1})
+    }else{
+      res.send({message:0})
+    }
+  })
+  
+  //res.send({message:1})
 })
 
 router.post('/medicalResume', async (req, res, next) => {

@@ -2,23 +2,24 @@ $("#formProfile").submit(function(e){
     e.preventDefault();
     postFetch("/user/formProfile", {
         idCard: $("#id_card").val(),
-        picture: $("#picture-url"),
-        address: $("#address"),
-        degree: $("#degree"),
+        picture_url: $("#picture_url").val(),
+        address: $("#address").val(),
+        degree: $("#degree").val(),
 
         birth: $("#birth").val(), 
         age: $("#age").val(), 
         phone: $("#phone").val(),
         recog: $("#recognitions").val(),
-        school: $("#school"),
-        phrase: $("#phrase"),
+        school: $("#school").val(),
+        phrase: $("#phrase").val(),
         
-        id_: $("#id"),
     }).then((res) => {
         if (res.message == 1) {
             alertify.success('Datos Guardados Satisfactoriamente');
         } else {
             alertify.error('Hubo un error al guardar los datos!!');
         }
+    }).catch(err=>{
+        console.log(err.message);
     })
 });
