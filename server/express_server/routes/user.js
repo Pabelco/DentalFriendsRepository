@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 const userModel = require('../models/user')
+const pacientModel = require('../models/pacient')
 var validator = require('validator');
 
 const jwtSecurity = require('../configs/jwtAuth.js')
@@ -8,6 +9,10 @@ const jwtSecurity = require('../configs/jwtAuth.js')
 /*
 Get methods
 */
+
+router.get('/medicalResume', function (req, res, next) {
+  res.render(`medicalResume`, {})
+})
 
 router.get('/profile', function (req, res, next) {
   res.render(`profile`, {})
@@ -44,6 +49,16 @@ router.post('/formProfile', async (req, res, next) => {
       console.log(err.message);
       res.send({ message: 0 });
     })
+})
+
+router.post('/medicalResume', async (req, res, next) => {
+  try {
+    const pacients = await pacientModel.findAll({attributes: { exclude: ['email_pacient'] }});
+    console.log(pacients)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
 })
 
 router.get('/all', async (req, res, next) => {
