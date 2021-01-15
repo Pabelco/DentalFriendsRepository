@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 const userModel = require('../models/user')
 const pacientModel = require('../models/pacient')
+const appointment = require('../models/appointment')
 var validator = require('validator');
 
 const jwtSecurity = require('../configs/jwtAuth.js')
@@ -53,8 +54,15 @@ router.post('/formProfile', async (req, res, next) => {
 
 router.post('/medicalResume', async (req, res, next) => {
   try {
-    const pacients = await pacientModel.findAll({attributes: { exclude: ['email_pacient'] }});
+    let requestBody = req.body;
+    const pacients = await pacientModel.findAll({
+      where: {
+        id_card_pacient: requestBody.id_card_pacient,
+      },
+      
+    });
     console.log(pacients)
+    res.send(pacients)
   } catch (error) {
     console.log(error)
     res.sendStatus(500)
