@@ -84,33 +84,33 @@
 
         <div class="row">
           <div class="col-lg-4">
-            <img src=<%= docs[i].picture_url %> class="img-fluid" alt="">
+            <img src=<%= docs[i][ "user_detail.picture_url" ] %> class="img-fluid" alt="">
           </div>
           <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3>Odontólogo &amp; <%= docs[i].speciality %></h3>
+            <h3>Odontólogo &amp; <%= docs[i]['user_detail.speciality'] %></h3>
             <p class="font-italic">
               <%= docs[i].user_name %>
             </p>
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> <%= docs[i].details.birthday %></li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> <%= docs[i].details.age %></li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong>  <%= docs[i].details.phone %></li>
-                  <li><i class="icofont-rounded-right"></i> <strong>City:</strong> <%= docs[i].address %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Birthday:</strong> <%= docs[i]['user_detail.details'].birthday %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Age:</strong> <%= docs[i]['user_detail.details'].age %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Phone:</strong>  <%= docs[i]['user_detail.details'].phone %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>City:</strong> <%= docs[i]['user_detail.address'] %></li>
                 </ul>
               </div>
               <div class="col-lg-6">
                 <ul>
-                  <li><i class="icofont-rounded-right"></i> <strong>Recococimientos:</strong> <%= docs[i].details.recognitions %></li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> <%= docs[i].speciality %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Recococimientos:</strong> <%= docs[i]['user_detail.details'].recognitions %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Degree:</strong> <%= docs[i]['user_detail.speciality'] %></li>
                   <li><i class="icofont-rounded-right"></i> <strong>Email:</strong> <%= docs[i].email %></li>
-                  <li><i class="icofont-rounded-right"></i> <strong>Universidad:</strong> <%= docs[i].details.university %></li>
+                  <li><i class="icofont-rounded-right"></i> <strong>Universidad:</strong> <%= docs[i]['user_detail.details'].university %></li>
                 </ul>
               </div>
             </div>
             <p>
-              " <%= docs[i].details.frase %> "
+              " <%= docs[i]['user_detail.details'].frase %> "
             </p>
           </div>
         </div><br><br><br>

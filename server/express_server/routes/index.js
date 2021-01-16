@@ -41,45 +41,19 @@ router.get('/medicalRecord', function (req, res, next) {
   res.render(`medicalRecord`, {})
 });
 
-router.get('/professional', function (req, res, next) { 
-  //const users = await userModel.findAll({attributes: { exclude: ['password'] }});
-
-  sequelize.query(`Select * from public.user_details inner join public.users ON user_details.id_details = users.id_details`)
-  .then(data => {
-    if (data){
-      res.render(`professional`, {title:"profesionales",docs:data[0]});
-    }else
-      res.send('nada')
-  }).catch(err => {
-    console.log(err.message);
-    res.send({message:0});
-  })   
-  
-});
-
-
-
-router.get('/professional2', function (req, res, next) { 
-  /*const  detail =   userModel.findAll({ 
-    include: {
-      model:userDetailsModel,
-      required: true
-    }  
-  });
-  
-  console.log(JSON.stringify(detail['user_detail.identity_card']));  
-*/
+router.get('/professional', function (req, res, next) { //revisar mvc y mover .fidnall a un controller
   userModel.findAll({
     include: {
       model:userDetailsModel,
-      required: true
-    } 
+      required: true 
+    },
+    raw: true //para devolver solo DataValues, no instancias
   }).then(data => {
-      res.send(data);
+      res.render(`professional`, {title:"profesionales",docs:data})
   }).catch(err => {
     res.status(500).send({
       message:
-        err.message || "Some error occurred while retrieving maestros."
+        err.message || "Database failure."
     });
   });
 });
