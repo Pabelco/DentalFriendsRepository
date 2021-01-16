@@ -2,7 +2,9 @@ var express = require('express')
 var router = express.Router()
 // const userModel = require('../models/user')
 var sequelize = require('../models/db')
-const jwtSecurity = require('../configs/jwtAuth.js')
+const jwtSecurity = require('../configs/jwtAuth.js');
+const userModel = require('../models/user');
+const userDetailsModel = require('../models/userDetails');
 
 /* 
  GET METHODS 
@@ -40,6 +42,8 @@ router.get('/medicalRecord', function (req, res, next) {
 });
 
 router.get('/professional', function (req, res, next) { 
+  //const users = await userModel.findAll({attributes: { exclude: ['password'] }});
+
   sequelize.query(`Select * from public.user_details inner join public.users ON user_details.id_details = users.id_details`)
   .then(data => {
     if (data){
@@ -52,6 +56,36 @@ router.get('/professional', function (req, res, next) {
   })   
   
 });
+
+
+
+router.get('/professional2', function (req, res, next) { 
+  /*const  detail =   userModel.findAll({ 
+    include: {
+      model:userDetailsModel,
+      required: true
+    }  
+  });
+  
+  console.log(JSON.stringify(detail['user_detail.identity_card']));  
+*/
+  userModel.findAll({
+    include: {
+      model:userDetailsModel,
+      required: true
+    } 
+  }).then(data => {
+      res.send(data);
+  }).catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving maestros."
+    });
+  });
+});
+
+
+
 
 router.get('/treatment', function (req, res, next) {
   res.render(`treatment`, {})

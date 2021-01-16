@@ -12,12 +12,13 @@ var userDetails = db.define('user_details', {
     picture_url: Sequelize.STRING
 }, {
     timestamps: false,
-    freezeTableName: false
-})
+    freezeTableName: true
+});
+
+/*
 userDetails.associate = () => {
-    userDetails.hasMany(user,{
-    });
-}
+    userDetails.hasMany(user);
+}*/
 
 
 
