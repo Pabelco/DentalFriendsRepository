@@ -7,19 +7,19 @@ var appointment = db.define('appointment', {
     id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
     state: {type: Sequelize.BOOLEAN, allowNull: false},
     date: {type: Sequelize.DATE, allowNull: false},
-    id_pacient: {type: Sequelize.INTEGER,
-        references: 'pacient' ,
-        referencesKey: 'id'},
-    id_user: {type:Sequelize.INTEGER,
-        references: 'user' ,
-        referencesKey: 'id'}
-    
+    details: {type: Sequelize.JSON},
 }, {
     timestamps: false,
     freezeTableName: true
 })
-appointment.belongsTo(pacient,{foreignKey: "id_pacient"})
-appointment.belongsTo(user,{foreignKey: "id_user"})
-//appointment.hasOne(user)
-//appointment.hasOne(pacient)
+appointment.associate = () => {
+    appointment.hasOne(pacient,{
+        foreignkey:'id_card_pacient'
+    });
+}
+appointment.associate = () => {
+    appointment.hasOne(user,{
+        foreignkey:'user_name'
+    });
+}
 module.exports = appointment
