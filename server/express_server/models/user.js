@@ -10,12 +10,18 @@ var user = db.define('users', {
     active: Sequelize.BOOLEAN,
     id_details: {
         type: Sequelize.INTEGER,
-        references: 'users' ,
+        references: 'user_details' ,
         referencesKey: 'id_details'   
     } 
 }, {
     timestamps: false,
     freezeTableName: true
 })
-user.hasOne(userDetails);
+user.associate = () => {
+    user.hasOne(userDetails,{
+        foreignkey: 'id_details'
+    });
+}
+//user.hasOne(userDetails);
+
 module.exports = user
