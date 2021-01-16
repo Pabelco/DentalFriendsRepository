@@ -68,6 +68,9 @@ router.post('/medicalResume', async (req, res, next) => {
       where: {
         id_card_pacient: requestBody.id_card_pacient,
       },
+      include: [{
+        model: appointment,
+      }]
       
     });
     console.log(pacients)

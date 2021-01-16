@@ -4,8 +4,7 @@ const db = require('./db');
 const userDetails = require('./userDetails');
 
 var user = db.define('users', {
-    //id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-    user_name: {type: Sequelize.STRING, primaryKey:true},
+    user_name: {type: Sequelize.STRING, primaryKey: true},
     email: Sequelize.STRING,
     password: Sequelize.STRING,
     active: Sequelize.BOOLEAN,
