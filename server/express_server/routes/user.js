@@ -7,6 +7,7 @@ const appointment = require('../models/appointment')
 var validator = require('validator');
 
 const jwtSecurity = require('../configs/jwtAuth.js')
+//const { json } = require('sequelize/types')
 
 /*
 Get methods
@@ -30,7 +31,7 @@ router.post('/', jwtSecurity.authenticateJWT, function (req, res, next) {
 /* 
  POST METHODS 
 */
-router.post('/formProfile', async (req, res, next) => {
+router.put('/formProfile', async (req, res, next) => { //cambio a put, prueba
   let requestBody = req.body;
   let dict = {
     "birthday": requestBody.birth,
@@ -40,26 +41,28 @@ router.post('/formProfile', async (req, res, next) => {
     "university": requestBody.school,
     "frase": requestBody.phrase
   };
-  
-  //create instance
-  const detail = userDetailsModel.build({
-    identity_card: requestBody.idCard,
-    address: requestBody.address,
-    speciality: requestBody.degree,
-    details: dict,
-    picture_url: requestBody.picture_url
-  })
-  //Insert into db
-  await detail.save()
-  .then(dbresponse => {
+  //update by id
+  userDetailsModel.update(
+    {identity_card: requestBody.idCard,
+      address: requestBody.address,
+      speciality: requestBody.degree,
+      details: dict,
+      picture_url: requestBody.picture_url},
+    {returning: true, where:{id_details: 38} }
+  ).then(dbresponse => {
     if(dbresponse){
-      res.send({message:1})
+      console.log(dbresponse);
+      res.send({message:1});
     }else{
-      res.send({message:0})
+      console.log(dbresponse);
+      res.send({message:0});
     }
-  })
-  
-  //res.send({message:1})
+  }).catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Database failure."
+    });
+  });
 })
 
 router.post('/medicalResume', async (req, res, next) => {
