@@ -9,11 +9,10 @@ var session = require('express-session')
 // ENRUTADORES
 /////////////////////////
 /////////////////////////
+var adminRouter = require('./routes/adminRoute')
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
-
-
-
+ 
 
 /////////////////////////
 /////////////////////////
@@ -45,6 +44,8 @@ app.use(session({
 // ENDPOINTS
 /////////////////////////
 /////////////////////////
+
+app.use('/admin', adminRouter);
 app.use('/', indexRouter);
 app.use('/user', userRouter);
 

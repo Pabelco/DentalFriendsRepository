@@ -12,14 +12,5 @@ var appointment = db.define('appointment', {
     timestamps: false,
     freezeTableName: true
 })
-appointment.associate = () => {
-    appointment.hasOne(pacient,{
-        foreignkey:'id_card_pacient'
-    });
-}
-appointment.associate = () => {
-    appointment.hasOne(user,{
-        foreignkey:'user_name'
-    });
-}
+ 
 module.exports = appointment

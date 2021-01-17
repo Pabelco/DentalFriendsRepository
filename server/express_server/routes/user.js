@@ -83,7 +83,18 @@ router.post('/medicalResume', async (req, res, next) => {
 
 router.get('/all', async (req, res, next) => {
   try {
-    const users = await userModel.findAll({attributes: { exclude: ['password'] }});
+    const users = await userModel.findAll({attributes: { exclude: ['password'] }, 
+      include: [userDetailsModel]}); 
+    res.send(users)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
+router.get('/allAppoinment', async (req, res, next) => {
+  try {
+    const users = await userModel.findAll({attributes: { exclude: ['password'] }}); 
     res.send(users)
   } catch (error) {
     console.log(error)

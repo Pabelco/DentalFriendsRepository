@@ -1,7 +1,11 @@
 $(document).ready(function () {
+    startCalendar();
+});
 
-    var appointmentAvaliable = getAvaliablesAppointment();
+var appointmentAvaliable
 
+function startCalendar() {
+    appointmentAvaliable = getAvaliablesAppointment();
     var calendar = new FullCalendar.Calendar(document.getElementById('calendarElement'), {
         initialView: 'timeGridWeek',
         allDaySlot: false,
@@ -13,7 +17,7 @@ $(document).ready(function () {
             right: ''
         },
         validRange: {
-            start: Date.now() 
+            start: Date.now()
         },
         slotLabelFormat: {
             hour: 'numeric',
@@ -35,23 +39,38 @@ $(document).ready(function () {
                 start: arg.start,
                 end: arg.end,
                 allDay: arg.allDay
-            })
-            calendar.unselect()
+            });
+            calendar.unselect();
         },
         eventClick: function (arg) {
             alertify.confirm('Eliminar cita', 'Esta seguro que desea borrar la cita?', function () {
-                arg.event.remove()
-                alertify.success('Cita cancelada')
-            }, function () { })
+                arg.event.remove();
+                alertify.success('Cita cancelada');
+            }, function () { });
+        },
+        customButtons: {
+            prev: {
+                text: 'Prev',
+                click: function () { 
+                    calendar.prev(); 
+                    console.log('1');
+                }
+            },
+            next: {
+                text: 'Next',
+                click: function () { 
+                    calendar.next(); 
+                    console.log('1');
+                }
+            },
         },
         editable: true,
         dayMaxEvents: true,
         events: []
-    })
+    });
     calendar.render();
-
     fillCalendar(appointmentAvaliable, calendar);
-});
+}
 
 function fillCalendar(appointmentAvaliable, calendar) {
     appointmentAvaliable.forEach(element => {
@@ -74,15 +93,23 @@ function getAvaliablesAppointment() {
 }
 
 async function loadDoctors() {
-    let listDoctors = await getFetch('/user/all')    
-    let htmlSelect = `` 
-    listDoctors.forEach( element => {
-            htmlSelect += `<option value=${element.id}>${element.user_name}</option>` 
-    }) 
-    $('#selectDoctor').html(htmlSelect);      
-} 
+    let listDoctors = await getFetch('/user/allAppoinment')
+    let htmlSelect = ``
+    listDoctors.forEach(element => {
+        htmlSelect += `<option value=${element.id}>${element.user_name}</option>`
+    })
+    $('#selectDoctor').html(htmlSelect);
+}
 
-$('#selectDoctor').change(function (e) {   
+$('#selectDoctor').change(function (e) {
+});
+
+$('button.fc-prev-button').click(function (e) {
+    console.log(1);
+});
+
+$('button.fc-next-button').click(function (e) {
+    console.log(2);
 });
 
 function initPage() {

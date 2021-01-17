@@ -6,6 +6,7 @@ $("#formLogin").submit(function (e) {
         postFetch("/register", {
             username: $("#username").val(), password: $("#password").val(), email: $("#email").val()
         }).then((res) => { 
+            console.log(res);
             if (res.message == 1) {  
                 location.replace('/')            
             } else {

@@ -4,26 +4,19 @@ const db = require('./db');
 const userDetails = require('./userDetails');
 
 var user = db.define('users', {
-    user_name: {type: Sequelize.STRING, primaryKey: true},
+    id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
+    user_name: Sequelize.STRING,
     email: Sequelize.STRING,
     password: Sequelize.STRING,
     active: Sequelize.BOOLEAN,
-    id_details: {
-        type: Sequelize.INTEGER,
-        references: 'user_details' ,
-        referencesKey: 'id_details'   
-    } 
+    id_details: Sequelize.INTEGER
 }, {
     timestamps: false,
     freezeTableName: true
-})
-user.belongsTo(userDetails,{foreignKey: 'id_details',targetKey:'id_details'});
-/*
-user.associate = () => {
-    user.belongsTo(userDetails,{
-        foreignkey: 'id_details'
-    });
-}*/
-//user.hasOne(userDetails);
+}) 
+
+userDetails.hasOne(user, {foreignKey: 'id_details'});
+user.belongsTo(userDetails, {foreignKey: 'id_details'});
 
 module.exports = user
+
