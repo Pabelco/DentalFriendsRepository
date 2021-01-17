@@ -68,17 +68,22 @@ router.put('/formProfile', async (req, res, next) => { //cambio a put, prueba
 router.post('/medicalResume', async (req, res, next) => {
   try {
     let requestBody = req.body;
-    const pacients = await pacientModel.findAll({
-      where: {
-        id_card_pacient: requestBody.id_card_pacient,
-      },
-      include: [{
-        model: appointment,
-      }]
-      
-    });
-    console.log(pacients)
-    res.send(pacients)
+    var condition = {
+      where:
+      {
+        id_card_pacient: requestBody.id_card_pacient
+      }    
+    }
+    const pacientTemp = await pacientModel.findOne(condition);
+    condition = {
+      where:
+      {
+        id_pacient: pacientTemp.dataValues.id
+      }    
+    }
+    const medicalResume = await appointment.findAll(condition);
+    console.log(medicalResume)
+    res.render(`medicalRecord`,{resume: medicalResume })
   } catch (error) {
     console.log(error)
     res.sendStatus(500)
