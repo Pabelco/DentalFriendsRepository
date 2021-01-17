@@ -40,6 +40,7 @@ router.post('/formProfile', async (req, res, next) => {
     "university": requestBody.school,
     "frase": requestBody.phrase
   };
+  
   //create instance
   const detail = userDetailsModel.build({
     identity_card: requestBody.idCard,

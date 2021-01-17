@@ -49,6 +49,7 @@ router.get('/professional', function (req, res, next) { //revisar mvc y mover .f
     },
     raw: true //para devolver solo DataValues, no instancias
   }).then(data => {
+    console.log(data);
     res.render(`professional`, { title: "profesionales", docs: data })
   }).catch(err => {
     res.status(500).send({
