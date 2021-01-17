@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize')
-const db = require('./db');
-const pacient = require('./pacient');
+const db = require('./db'); 
 const user = require('./user');
 
 var appointment = db.define('appointment', {
@@ -8,9 +7,14 @@ var appointment = db.define('appointment', {
     state: {type: Sequelize.BOOLEAN, allowNull: false},
     date: {type: Sequelize.DATE, allowNull: false},
     details: {type: Sequelize.JSON},
+    id_user: Sequelize.INTEGER,
+    id_pacient: Sequelize.INTEGER
 }, {
     timestamps: false,
     freezeTableName: true
 })
+
+user.hasMany(appointment, {foreignKey: 'id_user'});
+appointment.belongsTo(user, {foreignKey: 'id_user'});
  
 module.exports = appointment

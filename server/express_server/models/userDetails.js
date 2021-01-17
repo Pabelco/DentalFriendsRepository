@@ -14,12 +14,5 @@ var userDetails = db.define('user_details', {
     timestamps: false,
     freezeTableName: true
 });
-
-/*
-userDetails.associate = () => {
-    userDetails.hasMany(user);
-}*/
-
-
-
+  
 module.exports = userDetails
