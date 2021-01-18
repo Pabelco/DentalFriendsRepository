@@ -31,7 +31,7 @@ router.post('/', jwtSecurity.authenticateJWT, function (req, res, next) {
 /* 
  POST METHODS 
 */
-router.put('/formProfile', async (req, res, next) => { //cambio a put, prueba
+router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) => { //cambio a put, prueba
   let requestBody = req.body;
   let dict = {
     "birthday": requestBody.birth,
@@ -41,6 +41,12 @@ router.put('/formProfile', async (req, res, next) => { //cambio a put, prueba
     "university": requestBody.school,
     "frase": requestBody.phrase
   };
+  //search the user in the db req.user.username usar .id_details
+  const doctor=  await userModel.findOne({
+    where: {user_name: req.user.username},
+    raw: true
+  });
+  console.log(doctor.id_details);
   //update by id
   userDetailsModel.update(
     {identity_card: requestBody.idCard,
@@ -48,13 +54,13 @@ router.put('/formProfile', async (req, res, next) => { //cambio a put, prueba
       speciality: requestBody.degree,
       details: dict,
       picture_url: requestBody.picture_url},
-    {returning: true, where:{id_details: 38} }
+    {returning: true, where:{id_details: doctor.id_details} }
   ).then(dbresponse => {
     if(dbresponse){
-      console.log(dbresponse);
+      //console.log(dbresponse);
       res.send({message:1});
     }else{
-      console.log(dbresponse);
+      //console.log(dbresponse);
       res.send({message:0});
     }
   }).catch(err => {
