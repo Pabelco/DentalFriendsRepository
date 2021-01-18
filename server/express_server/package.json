@@ -23,7 +23,8 @@
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "tslib": "^2.1.0",
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "nodemailer": "^6.4.2"
   },
   "nodemonConfig": {
     "ignore": [

@@ -25,7 +25,7 @@ async function getFetch(url = "", objeto = {}) {
     var data = await respuesta.json()
     return data;
 }
-
+  
 async function putFetch(url = "", objectoEnviar = {}) {
     let response = await fetch(
         url,
@@ -52,3 +52,14 @@ async function deleteFetch(url = "", objectoEnviar = {}) {
     return data
 }
 
+function objectifyForm(formArray) { 
+    var returnArray = {};
+    for (var i = 0; i < formArray.length; i++){
+        returnArray[formArray[i]['name']] = formArray[i]['value'];
+    }
+    return returnArray;
+}
+
+function dateToInt(arg) {
+    return new Date(arg).getTime();
+}
