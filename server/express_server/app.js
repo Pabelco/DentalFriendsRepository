@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
 var session = require('express-session')
+const nodemailer = require('nodemailer');
 
 // ENRUTADORES
 /////////////////////////
@@ -13,6 +14,7 @@ var adminRouter = require('./routes/adminRoute')
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var appointmentRouter = require('./routes/appointment');
+var sendRouter = require('./routes/send');
  
 
 /////////////////////////
