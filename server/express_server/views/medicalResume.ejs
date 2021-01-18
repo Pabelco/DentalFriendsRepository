@@ -44,17 +44,16 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
+            <h5 class="modal-title">Detalles</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
-            <p>Modal body text goes here.</p>
+            <p>Descripcion</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
@@ -83,35 +82,69 @@
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label class="col-form-label col-md-2">Ingrese la cedula de paciente:</label>
-                <div class="col-md-6 form-group">
+                <div class="col-md-3 form-group">
                   <input id="id_card_pacient" class="border border-dark" type="text">
                 </div>
-                <div class="col-md-2"></div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-2"></div>
-                <button type="submit" class="btn btn-primary">Buscar</button>
+                <div class="col-md-5">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
               </div>
             </form>
-
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Prueba de Modal
-            </button>
           </div>
 
           <div>
-            <table class="table">
+            <table id="medicalResumeTable" class="table">
               <tr>
                 <th>Fecha</th>
-                
                 <th>Odontólogo</th>
               </tr>
               <tr>
-                <td>sfa</td>
-                <td>rtew</td>
+                <td>2021-01-19</td>
+                <td>Pabelco</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>luis</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>rogwi</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>Bryan</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>Issac</td>
+                <td>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
               </tr>
               <% if (resume) { %>
-                <% console.log("Hola?") %>
+                <% console.log(resume) %>
                 <% for(var i = 0; i < resume.length; i++) { %>
                   <% if (resume[i] != null) { %>
                     <tr>

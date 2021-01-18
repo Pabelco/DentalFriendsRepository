@@ -60,7 +60,7 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
   ).then(dbresponse => {
     if(dbresponse){
       //console.log(dbresponse);
-      res.send({message:1});
+      res.send({message:1});  
     }else{
       //console.log(dbresponse);
       res.send({message:0});
@@ -82,7 +82,7 @@ router.post('/medicalResume', async (req, res, next) => {
       raw: true,
 
     });
-    console.log(medicalResume)
+    //console.log(medicalResume)
     //res.json(responseParsed)
     /*res.render(`medicalRecord`, { resume: responseParsed }, function (err, html) {
       res.send(responseParsed)
