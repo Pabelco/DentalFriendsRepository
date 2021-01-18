@@ -108,14 +108,18 @@
               </tr>
               <tr>
                 <td>sfa</td>
-                <td>rtew></td>
+                <td>rtew</td>
               </tr>
-              <% for(var i = 0; i < resume.length; i++) { %>
-                <% if (resume[i] != null) { %>
-                  <tr>
-                    <td><%= resume[i].date %></td>
-                    <td><%= resume[i].id_user %></td>
-                  </tr>
+              <% if (resume) { %>
+                <% console.log("Hola?") %>
+                <% for(var i = 0; i < resume.length; i++) { %>
+                  <% if (resume[i] != null) { %>
+                    <tr>
+                      <td><%= resume[i].date %></td>
+                      <td><%= resume[i].id_user %></td>
+                    </tr>
+                  <% } %>
+                <% } %>
               <% } %>
             </table>
           </div>

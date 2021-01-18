@@ -14,7 +14,7 @@ var adminRouter = require('./routes/adminRoute')
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
 var appointmentRouter = require('./routes/appointment');
-var sendRouter = require('./routes/send');
+//var sendRouter = require('./routes/send');
  
 
 /////////////////////////

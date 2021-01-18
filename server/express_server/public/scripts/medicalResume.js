@@ -3,6 +3,8 @@ $("#searchMedicalResume").submit(function (e) {
     postFetch("/user/medicalResume",{
         id_card_pacient: $('#id_card_pacient').val(),
     }).then((res) => {
-        console.log("Procesado post medical Resume",res)
+        console.log(res > 0)
+        console.log(res)
+        //location.reload();
     })
 });
