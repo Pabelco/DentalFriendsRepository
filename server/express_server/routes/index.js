@@ -5,6 +5,7 @@ var sequelize = require('../models/db')
 const jwtSecurity = require('../configs/jwtAuth.js');
 const userModel = require('../models/user');
 const userDetailsModel = require('../models/userDetails');
+const pacientModel = require('../models/pacient')
 
 /* 
  GET METHODS 
@@ -35,10 +36,6 @@ router.get('/dentalcare', function (req, res, next) {
 
 router.get('/portafolio', function (req, res, next) {
   res.render(`portafolio`, {})
-});
-
-router.get('/medicalRecord', function (req, res, next) {
-  res.render(`medicalRecord`, {})
 });
 
 router.get('/professional', function (req, res, next) { //revisar mvc y mover .fidnall a un controller
@@ -115,6 +112,7 @@ router.post('/register', async (req, res, next) => {
     res.send({ message: 0});
   }
 })
+
 
 
 module.exports = router;

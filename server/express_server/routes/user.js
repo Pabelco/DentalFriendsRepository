@@ -23,6 +23,9 @@ router.get('/profile', function (req, res, next) {
   res.render(`profile`, {})
 })
 
+router.get('/medicalRecord', function (req, res, next) {
+  res.render(`medicalRecord`, {})
+});
 
 router.post('/', jwtSecurity.authenticateJWT, function (req, res, next) {
   res.send({ message: 'Tu estas autorizado' })
@@ -127,6 +130,34 @@ router.get('/:id', async (req, res, next) => {
       res.sendStatus(500)
   } 
 })
+
+router.put('/formRecord', jwtSecurity.authenticateJWT , async (req, res, next) => { 
+  let requestBody = req.body;
+  console.log(requestBody.id_card_pacient);
+  //update by id_card_pacient
+  pacientModel.update(
+    {id_card_pacient: requestBody.id_card_pacient,
+     name_pacient: requestBody.name_pacient,
+     lastname_pacient: requestBody.lastname_pacient,
+     age_pacient: requestBody.age_pacient,
+     gender_pacient: requestBody.gender_pacient,
+     address_pacient: requestBody.address_pacient,
+     phone_pacient: requestBody.phone_pacient},
+    {returning: true, where:{id_card_pacient: requestBody.id_card_pacient} }
+  ).then(dbresponse => {
+    if(dbresponse){
+      res.send({message:1});  
+    }else{
+      res.send({message:0});
+    }
+  }).catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Database failure."
+    });
+  });
+})
+
 
 
  
