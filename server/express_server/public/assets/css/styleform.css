@@ -1,0 +1,18 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+  
+a {
+  color: #370df1;
+  padding: 45px;
+   font-size: 20px;
+  font-weight: bolder;
+ }
+ 
+form label{
+    font-weight:bold;
+  background-color:rgba(102, 200, 245, 0.329);
+}
+
+/*# sourceMappingURL=style.css.map */

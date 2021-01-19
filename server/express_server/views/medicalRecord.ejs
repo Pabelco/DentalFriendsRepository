@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Agendamiento - DentalFriends</title>
+    <title>Ficha Medica - DentalFriends</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -28,11 +28,14 @@
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/styleform.css" rel="stylesheet">
+
     <link rel="stylesheet" href="../styles/fullCalendar.css">
     <link rel="stylesheet" href="../styles/alertify.min.css">
     <link rel="stylesheet" href="../styles/themes/default.css">    
     
     <link rel="stylesheet" href="../styles//style.css">
+
 
 
     <!-- =======================================================
@@ -82,7 +85,7 @@
 
           <div class="section-title">
             <h2>Ficha Medica</h2>
-            <p>Por favor, ingrese el historial medico del paciente en el siguiente formulario</p>
+            <p>Por favor, ingrese los datos para la ficha medica del paciente en el siguiente formulario</p>
           </div>
 
           <ul class="nav nav-tabs" id="myForm">
@@ -95,50 +98,179 @@
           <form id="formRecord" action="" method="post">
             <div class="tab-content">
               <div class="tab-pane active" id="one">
-                <input type="text" class="form-control" name="id_card" id="id_card" placeholder="Cédula"><br>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Nombres"><br>
-                <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Apellidos"><br>
-                <input type="text" class="form-control" name="gender" id="gender" placeholder="Masculino (m) Femenino (f) "><br>
-                 <input type="text" class="form-control" name="age" id="age" placeholder="Edad"><br>
-                 <input type="text" class="form-control" name="address" id="address" placeholder="Direccion del Paciente"><br>
-                 <input type="text" class="form-control" name="phone" id="phone" placeholder="Telefono del Paciente"><br>
-                 <input type="text" class="form-control" name="email" id="email" placeholder="Email del Paciente"><br>
-                 <textarea class="form-control" name="reason" rows="10" cols="40">Motivo de la Consulta</textarea><br>
-                 <input type="text" class="form-control"name="enfermedad" id="enfermedad" placeholder="Enfermedad Actual"><br>
-                 <input type="checkbox" id="gestacion" name="gestacion" value="true">
-                 <label for="gestacion">Embarazada </label><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="id_card"  class="col-form-label col-md-2">Cédula:</label>
+                  <input class="form-control col-md-6" type="text" minlength="10" maxlength="10" name="id_card" id="id_card" placeholder="Ingrese Cédula" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="name"  class="col-form-label col-md-2">Nombres:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength= 50" name="name" id="name" placeholder="Ingrese Nombre" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="kastname"  class="col-form-label col-md-2">Apellidos:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="50" name="lastname" id="lastname" placeholder="Ingrese los apellidos del paciente" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="gender"  class="col-form-label col-md-2">Género:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="1" name="gender" id="gender" placeholder="Ingrese M para masculino y f para femenino" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="age"  class="col-form-label col-md-2">Edad:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="2" name="age" id="age" placeholder="Ingrese la edad" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="phone"  class="col-form-label col-md-2">Teléfono:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="10" name="phone" id="phone" placeholder="Ingrese el número telefononico" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="address"  class="col-form-label col-md-2">Dirección:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="address" id="address" placeholder="Ingrese la direccion domiciliaria" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="email"  class="col-form-label col-md-2">Email:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="100" name="email" id="email" placeholder="Ingrese el correo electronico" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="reason"  class="col-form-label col-md-2">Motivo de la Consulta:</label>
+                  <textarea class="form-control col-md-6"  name="reason" id="reason" rows="5" cols="10">Motivo de la Consulta</textarea><br>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="enfermdad"  class="col-form-label col-md-2">Enfermedad Actual:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="enfermedad" id="enfermedad" placeholder="Ingrese la enfermdad actual del paciente" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="embarazo" class="col-form-label col-md-2">Embarazo:</label>
+                  <input type="checkbox" class="col-form-label col-md-2"id="embarazo" name="embarazo" value="true">
+                  <div class="col-md-2"></div>
+                </div><br>
               </div>
               <div class="tab-pane" id="two">
-                  <input type="checkbox" id="antecedente1" name="antecedente1" value="true">
-                  <label for="antecedente1">Alergia Antibiotico</label><br>
-                  <input type="checkbox" id="antecedente2" name="antecedente2" value="true">
-                  <label for="antecedente2">Alergia Anestesia</label><br>
-                  <input type="checkbox" id="antecedente3" name="antecedente3" value="true">
-                  <label for="antecedente3">Hemorragias</label><br>
-                  <input type="checkbox" id="antecedente4" name="antecedente4" value="true">
-                  <label for="antecedente4">VHI/SIDA</label><br>
-                  <input type="checkbox" id="antecedente5" name="antecedente5" value="true">
-                  <label for="antecedente5">Asma</label><br>
-                  <input type="checkbox" id="antecedente6" name="antecedente6" value="true">
-                  <label for="antecedente6">Diabetes</label><br>
-                  <input type="checkbox" id="antecedente7" name="antecedente7" value="true">
-                  <label for="antecedente7">HiperTension</label><br>
-                  <input type="checkbox" id="antecedente8" name="antecedente8" value="true">
-                  <label for="antecedente8">Enfermedades Cardiacas</label><br>
-                  <input type="checkbox" id="antecedente9" name="antecedente9" value="true">
-                  <label for="antecedente9">Tuberculosis</label><br>
-                  <input type="text" class="form-control" name="otrosAntecedentes" id="otrosAntecedentes" placeholder="Otros"><br>
-              </div>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                    <input type="checkbox" id="antecedente1" name="antecedente1" value="true">
+                    <label for="antecedente1">Alergia Antibiotico</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                 <div class="col-md-2"></div>  
+                    <input type="checkbox" id="antecedente2" name="antecedente2" value="true">
+                    <label for="antecedente2">Alergia Anestesia</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>  
+                    <input type="checkbox" id="antecedente3" name="antecedente3" value="true">
+                    <label for="antecedente3">Hemorragias</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                   <div class="col-md-2"></div>  
+                    <input type="checkbox" id="antecedente4" name="antecedente4" value="true">
+                    <label for="antecedente4">VHI/SIDA</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                   <div class="col-md-2"></div>  
+                    <input type="checkbox" id="antecedente5" name="antecedente5" value="true">
+                    <label for="antecedente5">Asma</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                   <div class="col-md-2"></div>    
+                    <input type="checkbox" id="antecedente6" name="antecedente6" value="true">
+                    <label for="antecedente6">Diabetes</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                   <div class="col-md-2"></div>    
+                    <input type="checkbox" id="antecedente7" name="antecedente7" value="true">
+                    <label for="antecedente7">HiperTension</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                   <div class="col-md-2"></div>  
+                    <input type="checkbox" id="antecedente8" name="antecedente8" value="true">
+                    <label for="antecedente8">Enfermedades Cardiacas</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                    <div class="col-md-2"></div>
+                    <input type="checkbox" id="antecedente9" name="antecedente9" value="true">
+                    <label for="antecedente9">Tuberculosis</label><br>
+                    <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="ptraenfermdad"  class="col-form-label col-md-2">Otras:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="ptraenfermdad" id="ptraenfermdad" placeholder="Ingrese otras emfermedades del paciente" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+              </div><br>
               <div class="tab-pane" id="three">
-                  <input type="text" class="form-control" name="presion" id="presion" placeholder="Presion Arterial"><br>
-                  <input type="text" class="form-control"name="frecuenciaC" id="frecuenciaC" placeholder="Frecuencia Cardiaca en minutos"><br>
-                  <input type="text" class="form-control" name="frecuenciaR" id="frecuenciaR" placeholder="Frecuencia Respiratoria en minutos"><br>
-                  <input type="text" class="form-control" name="temperatura" id="temperatura" placeholder="Temperatura en C"><br> 
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="presion"  class="col-form-label col-md-2">Presion Arterial:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="10" name="presion" id="presion" placeholder="Ingrese el valor" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="frecuenciac"  class="col-form-label col-md-2">Frecuencia Cardiaca:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="frecuenciac" id="frecuenciac" placeholder="Ingrese el valor en minutos" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="frecuenciar"  class="col-form-label col-md-2">Frecuencia Respiratoria:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="frecuenciar" id="frecuenciar" placeholder="Ingrese el valor en minutos" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="temperatura"  class="col-form-label col-md-2">Temperatura Corporal:</label>
+                  <input class="form-control col-md-6" type="text"  maxlength="200" name="temperatura" id="temperatura" placeholder="Ingrese el valor en C" required/>
+                  <div class="col-md-2"></div>
+                </div><br>
               </div>
               <div class="tab-pane" id="four">
-                  <textarea class="form-control" name="diagnostico" rows="10" cols="40">Diagnostico para el Paciente</textarea><br>
-                  <textarea class="form-control" name="tratamiento" rows="10" cols="40">Tratamiento para el Paciente</textarea><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="diagnostico"  class="col-form-label col-md-2">Diagnostico:</label>
+                  <textarea class="form-control col-md-6"  name="diagnostico" id="diagnostico" rows="5" cols="10">Diagnostico para el Paciente</textarea><br>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
+                  <label  for="tratamiento"  class="col-form-label col-md-2">Tratamiento:</label>
+                  <textarea class="form-control col-md-6"  name="tratamiento" id="tratamiento" rows="5" cols="10">Tratamiento para el Paciente</textarea><br><br>
+                  <div class="col-md-2"></div>
+                </div><br>
+                <div class="form-row">
+                  <div class="col-md-2"></div>
                   <button type="submit" class="btn btn-success">Submit</button>
+                  <div class="col-md-2"></div>
+                </div><br>
               </div>    
             </div>
           </form>

@@ -6,7 +6,7 @@ $('#myForm a').click(function(e) {
   
 $("#formRecord").submit(function(e){
   e.preventDefault();
-  putFetch("/user/medicalRecord", {
+  putFetch("/user/formRecord", {
       idCard: $("#id_card").val(),
       name: $("#name").val(),
       lastname: $("#lastname").val(),
