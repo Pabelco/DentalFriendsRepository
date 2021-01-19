@@ -7,6 +7,8 @@ const appointment = require('../models/appointment')
 var validator = require('validator');
 
 const jwtSecurity = require('../configs/jwtAuth.js')
+const user = require('../models/user')
+const pacient = require('../models/pacient')
 //const { json } = require('sequelize/types')
 
 /*
@@ -14,13 +16,16 @@ Get methods
 */
 
 router.get('/medicalResume', function (req, res, next) {
-  res.render(`medicalResume`, {})
+  res.render(`medicalResume`, {resume: {}})
 })
 
 router.get('/profile', function (req, res, next) {
   res.render(`profile`, {})
 })
 
+router.get('/medicalRecord', function (req, res, next) {
+  res.render(`medicalRecord`, {})
+});
 
 router.post('/', jwtSecurity.authenticateJWT, function (req, res, next) {
   res.send({ message: 'Tu estas autorizado' })
@@ -58,7 +63,7 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
   ).then(dbresponse => {
     if(dbresponse){
       //console.log(dbresponse);
-      res.send({message:1});
+      res.send({message:1});  
     }else{
       //console.log(dbresponse);
       res.send({message:0});
@@ -74,22 +79,19 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
 router.post('/medicalResume', async (req, res, next) => {
   try {
     let requestBody = req.body;
-    var condition = {
-      where:
-      {
-        id_card_pacient: requestBody.id_card_pacient
-      }    
-    }
-    const pacientTemp = await pacientModel.findOne(condition);
-    condition = {
-      where:
-      {
-        id_pacient: pacientTemp.dataValues.id
-      }    
-    }
-    const medicalResume = await appointment.findAll(condition);
-    console.log(medicalResume)
-    res.render(`medicalRecord`,{resume: medicalResume })
+    const medicalResume = await appointment.findAll({
+      where: { '$pacient.id_card_pacient$': requestBody.id_card_pacient },
+      include: [{ model: pacient},{model: user}],
+      raw: true,
+
+    });
+    //console.log(medicalResume)
+    //res.json(responseParsed)
+    /*res.render(`medicalRecord`, { resume: responseParsed }, function (err, html) {
+      res.send(responseParsed)
+    })*/
+    res.send(medicalResume)
+    //res.render(`medicalRecord`,{resume: responseParsed})
   } catch (error) {
     console.log(error)
     res.sendStatus(500)
@@ -128,6 +130,35 @@ router.get('/:id', async (req, res, next) => {
       res.sendStatus(500)
   } 
 })
+
+router.put('/formRecord', jwtSecurity.authenticateJWT , async (req, res, next) => { 
+  console.log();('entre aqui')
+  let requestBody = req.body;
+  console.log(requestBody.id_card_pacient);
+  //update by id_card_pacient
+  pacientModel.update(
+    {id_card_pacient: requestBody.id_card_pacient,
+     name_pacient: requestBody.name_pacient,
+     lastname_pacient: requestBody.lastname_pacient,
+     age_pacient: requestBody.age_pacient,
+     gender_pacient: requestBody.gender_pacient,
+     address_pacient: requestBody.address_pacient,
+     phone_pacient: requestBody.phone_pacient},
+    {returning: true, where:{id_card_pacient: requestBody.id_card_pacient} }
+  ).then(dbresponse => {
+    if(dbresponse){
+      res.send({message:1});  
+    }else{
+      res.send({message:0});
+    }
+  }).catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Database failure."
+    });
+  });
+})
+
 
 
  
