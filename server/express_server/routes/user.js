@@ -50,8 +50,14 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
   const doctor=  await userModel.findOne({
     where: {user_name: req.user.username},
     raw: true
+  }).then(dbresponse => {
+    if(dbresponse){
+      res.send({message:1});  
+    }else{
+      res.send({message:0});
+    }
   });
-  console.log(doctor.id_details);
+  
   //update by id
   userDetailsModel.update(
     {identity_card: requestBody.idCard,
