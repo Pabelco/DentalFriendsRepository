@@ -1460,3 +1460,18 @@ h2.active {
 .panes-isaac:hover{
 
 }
+.login-background{
+  background-image: url('https://image.freepik.com/foto-gratis/dentistas-eligen-equipos-mesa_1150-19659.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+
+}
+.login-card-background{
+  background-color: #e9e8e6;
+  border-radius: 5px;
+}
