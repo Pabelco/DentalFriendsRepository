@@ -1444,3 +1444,19 @@ h2.active {
 *:focus {
     outline: none;
 } 
+/*NOT BOOTSTRAP */
+.labels-isaac{
+  font-weight:bold;
+  background-color:rgba(102, 200, 245, 0.329);
+}
+/*#00B7FF*/
+.panes-isaac{
+  color: #444444;
+  background-color: rgba(102, 200, 245, 0.329);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+.panes-isaac:hover{
+
+}
