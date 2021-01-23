@@ -63,3 +63,25 @@ function objectifyForm(formArray) {
 function dateToInt(arg) {
     return new Date(arg).getTime();
 }
+
+function modificateActualTime(mode = 'minute', date = '', value = 1) {
+    var dateTmp = (new Date(date)).getTime()  
+    switch (mode) {
+        case 'day':
+            dateTmp += (value * 1000 * 60 * 60 * 24)
+            break;
+        case 'hour':
+            dateTmp += (value * 1000 * 60 * 60)
+            break;
+        case 'minute':
+            dateTmp += (value * 1000 * 60)
+            break; 
+        case 'second':
+            dateTmp += (value * 1000)
+            break;    
+        default:            
+            break;
+    }   
+    return new Date(dateTmp)
+}
+

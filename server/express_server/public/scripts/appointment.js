@@ -1,12 +1,14 @@
 var appointmentSelect = -1;
 var appointmentAvaliable = new Map()
+var calendar
 
 $(document).ready(function () {
     startCalendar();
+    fillCalendar()
 });
 
 function startCalendar() { 
-    var calendar = new FullCalendar.Calendar(document.getElementById('calendarElement'), {
+    calendar = new FullCalendar.Calendar(document.getElementById('calendarElement'), {
         initialView: 'timeGridWeek',
         allDaySlot: false,
         locale: 'es',
@@ -17,7 +19,8 @@ function startCalendar() {
             right: ''
         },
         validRange: {
-            start: Date.now()
+            start: Date.now(),
+            end: modificateActualTime('day', new Date(), 15)
         },
         slotLabelFormat: {
             hour: 'numeric',
@@ -32,10 +35,8 @@ function startCalendar() {
         navLinks: true,
         selectable: true,
         selectMirror: true,
-        select: function (arg) {   
-        },
-        eventClick: function (arg) { 
-            console.log(arg.event.start); 
+        select: function (arg) { },
+        eventClick: function (arg) {  
             const startDate = dateToInt(arg.event.start);
             const appointment = appointmentAvaliable.has(startDate);
             if (appointment) {
@@ -50,14 +51,14 @@ function startCalendar() {
                 text: 'Prev',
                 click: function () { 
                     calendar.prev(); 
-                    getAvaliablesAppointment()
+                    fillCalendar()
                 }
             },
             next: {
                 text: 'Next',
                 click: function () { 
                     calendar.next(); 
-                    getAvaliablesAppointment()
+                    fillCalendar()
                 }
             },
         },
@@ -65,32 +66,41 @@ function startCalendar() {
         dayMaxEvents: true,
         events: []
     });
-    calendar.render();
-    fillCalendar(appointmentAvaliable, calendar);
+    calendar.render(); 
 }
- 
-function fillCalendar(appointmentAvaliable, calendar) {
-    appointmentAvaliable.forEach(element => {
-        calendar.addEvent({ 
-            start: element.date, 
-            end: new Date(new Date(element.date).getTime() + 900000),
-            backgroundColor: element.state == 1 ? 'red' : 'blue',
+  
+function fillCalendar() { 
+    getAvaliablesAppointment() 
+    clearCalendar(); 
+}
 
-        });
+function clearCalendar() { 
+    calendar.getEvents().forEach(element => {
+        element.remove();
     });
 }
-var appointmentAvaliable = new Map()
+
 function getAvaliablesAppointment() { 
     appointmentAvaliable = new Map() 
     if ($("#selectDoctor").val() !== '') {
         getFetch(`/appointment/byUser/${$("#selectDoctor").val()}`).then((res) => { 
+            clearCalendar()
             res.forEach(element => {
                 appointmentAvaliable.set(new Date(element.date).getTime(), element)       
             })
-            startCalendar()
+            addEventsCalendar()
         })      
-    } 
-    return appointmentAvaliable;
+    }  
+}
+
+function addEventsCalendar() {
+    appointmentAvaliable.forEach(element => {
+        calendar.addEvent({
+            start: element.date,
+            end: modificateActualTime('minute', element.date, 15),
+            backgroundColor: element.state == 1 ? 'red' : 'blue'
+        });
+    })
 }
 
 async function loadDoctors() {

@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var sassMiddleware = require('node-sass-middleware');
-var session = require('express-session')
-const nodemailer = require('nodemailer');
+var session = require('express-session') 
 
 // ENRUTADORES
 /////////////////////////

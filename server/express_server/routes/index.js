@@ -20,7 +20,7 @@ router.get('/home', function (req, res, next) {
   res.render(`home`, {})
 });
 
-router.get('/aboutus', function (req, res, next) {
+router.get('/aboutus', function (req, res, next) {  
   res.render(`aboutus`, {})
 });
 
@@ -44,15 +44,14 @@ router.get('/treatment', function (req, res, next) {
   res.render(`treatment`, {})
 });
 
-router.get('/professional', function (req, res, next) { 
+router.get('/professional', function (req, res, next) {  
   userModel.findAll({
     include: {
       model: userDetailsModel,
       required: true
     },
     raw: true  
-  }).then(data => {
-    console.log(data);
+  }).then(data => { 
     res.render(`professional`, { title: "profesionales", docs: data })
   }).catch(err => {
     res.status(500).send({
@@ -75,8 +74,7 @@ router.post('/login', async (req, res, next) => {
       username: requestBody.username,
       token: jwtSecurity.jwt.sign({ username: requestBody.username, role: requestBody.password },
         jwtSecurity.keySecret)
-    };
-    console.log(newUser);
+    }; 
     req.session.user = newUser
     res.send(newUser)
   } else {

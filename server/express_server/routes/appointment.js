@@ -5,11 +5,22 @@ const userDetailsModel = require("../models/userDetails")
 const pacientModel = require('../models/pacient')
 const appointment = require('../models/appointment')
 var validator = require('validator');
+const { Op } = require("sequelize");
+const utils = require('../scripts/utils.js');
  
-router.get('/byUser/:idUser', async (req, res, next) => {
+router.get('/byUser/:idUser', async (req, res, next) => {    
     try {
         if (validator.isInt(req.params.idUser)) {
-            let appointments = await appointment.findAll({ where: { id_user: req.params.idUser } })
+            let appointments = await appointment.findAll(
+              { 
+                where: { 
+                  id_user: req.params.idUser, 
+                  date: { 
+                    [Op.lt]: utils.modificateActualTime('day', +15), 
+                    [Op.gt]: utils.modificateActualTime('day', -1)
+                  } 
+                }, model: pacientModel 
+            })
             res.json(appointments)
         }
     } catch (error) {
