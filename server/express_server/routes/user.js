@@ -153,12 +153,22 @@ router.post('/medicalResume', async (req, res, next) => {
       medicalResume[element]['nombrePaciente'] = fullName
     }
     res.send(medicalResume)
-    //res.json(responseParsed)
-    /*res.render(`medicalRecord`, { resume: responseParsed }, function (err, html) {
-      res.send(responseParsed)
-    })*/
-    //res.send(medicalResume)
-    //res.render(`medicalRecord`,{resume: responseParsed})
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+})
+
+router.post('/medicalResume/details', async (req, res, next) => {
+  try {
+    let requestBody = req.body;
+    const detalles = await appointment.findOne({
+      attributes: ['details'],
+      where:{
+        id: requestBody.idAppointment
+      },
+    });
+    res.send(detalles)
   } catch (error) {
     console.log(error)
     res.sendStatus(500)
