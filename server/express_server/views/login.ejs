@@ -3,37 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title> 
-    <link rel="stylesheet" href="styles/login.css"> 
+    <title>Inicio de Sesion</title> 
+    <!--
+    <link rel="stylesheet" href="styles/login.css"> -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles/alertify.min.css">
     <link rel="stylesheet" href="styles/themes/default.css">
+    <link href="/assets/css/style.css" rel="stylesheet">
+
+    <link href="/assets/img/favicon.png" rel="icon">
+    <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet">
+    
 </head> 
-<body>  
- 
-    <div class="login">
-        <h1>Inicio de sesion</h1>
-        <form id="formLogin">
-            <p><input type="text" id="username" value="" placeholder="Usuario"></p>                         
+<body class="login-background">  
+    <main id="main" class="">
 
-            <% if(action=='register') { %>
-                <p><input type="text" id="email" value="" placeholder="Email"></p> 
-                <p><input type="hidden" id=<%= 'register' %>></p>
-            <% } %>
+        <!-- ======= Portfolio Section ======= -->
+        <section id="contact" class="contact">
+          <div class="container login-card-background col-md-5" data-aos="fade-up">
             
-            <p><input type="password" id="password" value="" placeholder="Clave"></p>
+            <div class="section-title">
+              <h2>Bienvenido</h2>
+              <p>Por favor, llene los campos</p>
+            </div>
+            <div class="mt-5 mt-lg-0">
+                <form id="formLogin">
+                    <div class="form-row">
+                        <div class="col-md-1"></div>
+                        <input type="text" id="username" class="form-control col-md-10" value="" placeholder="Usuario">                        
+                        <div class="col-md-1"></div>
+                    </div><br>
 
-            <p class="submit"><input id="sendLogin" type="submit" name="commit" value="Login"></p> 
-            
-            <% if(action!='register') { %> 
-                <p>
-                    <label>
-                        <a href="/register">Registrarse</a> - <a href="/home">Modo invitado</a> 
-                    </label>
-                </p> 
-            <% } %> 
- 
-        </form>
-    </div> 
+                    <% if(action=='register') { %>
+                        <div class="form-row">
+                            <div class="col-md-1"></div>
+                            <input type="text" id="email" class="form-control col-md-10" value="" placeholder="Email">
+                            <div class="col-md-1"></div>
+                        </div><br>
+                        <p></p><input type="hidden" class="form-control col-md-6" id=<%= 'register' %>></p>
+                    <% } %>
+                    <div class="form-row">
+                        <div class="col-md-1"></div>
+                        <input type="password" id="password" class="form-control col-md-10" value="" placeholder="Clave">
+                        <div class="col-md-1"></div>
+                    </div><br>
+                    <div class="form-row">
+                        <div class="col-md-1"></div>
+                        <input id="sendLogin" class="btn btn-primary center col-md-10" type="submit" name="commit" value="Login">
+                        <div class="col-md-1"></div>
+                     </div><br>
+                    <% if(action!='register') { %> 
+                        <div class="form-row">
+                            <div class="col-md-1"></div>
+                            <label class="col-form-label col-md-10 d-flex justify-content-between">
+                                <a href="/register">Registrarse</a> - <a href="/home">Modo invitado</a> 
+                            </label>
+                            <div class="col-md-1"></div>
+                        </div> 
+                    <% } %> 
+         
+                </form>
+
+
+            </div>
+             
+          </div>
+        </section>
+    </main>
 
     <script src="assets/vendor/jquery/jquery.min.js"></script>
     <script src="scripts/alertify.min.js"></script>

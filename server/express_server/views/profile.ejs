@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <title>Editar Perfil - DentalFriends</title>
-    <meta content="" name="descriptison">
+    <meta content="" name="description">
     <meta content="" name="keywords">
 
     <!-- Favicons -->
@@ -28,7 +28,6 @@
 
     <!-- Template Main CSS File -->
     <link href="../assets/css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/fullCalendar.css">
     <link rel="stylesheet" href="../styles/alertify.min.css">
     <link rel="stylesheet" href="../styles/themes/default.css">
     <!-- =======================================================
@@ -86,13 +85,13 @@
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="id_card"  class="col-form-label col-md-2">Cédula:</label>
-                <input class="form-control col-md-6" type="text" minlength="10" maxlength="10" name="id_card" id="id_card" required/>
+                <input class="form-control col-md-6" type="text" minlength="10" maxlength="10" placeholder="ej: 0909090909" name="id_card" id="id_card" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="birth"  class="col-form-label col-md-2">Nombre Completo:</label>
-                <input class="form-control col-md-6" type="text" name="birth"   id="birth" required/>
+                <input class="form-control col-md-6" placeholder="ej: Juan Antonio Nuñez Almeida" type="text" name="birth"   id="birth" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
@@ -104,62 +103,53 @@
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="phone"  class="col-form-label col-md-2">Télefono:</label>
-                <input class="form-control col-md-6" type="text" minlength="10" maxlength="10" name="phone" id="phone" required/>
+                <input class="form-control col-md-6" placeholder="ej: 0909090909" type="text" minlength="10" maxlength="10" name="phone" id="phone" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="recognitions"  class="col-form-label col-md-2">Reconocimientos:</label>
-                <input class="form-control col-md-6" type="text" name="recognitions" id="recognitions" required/>
+                <input class="form-control col-md-6" type="text" placeholder="ej: Rec. Nombre del Reconocimiento" name="recognitions" id="recognitions" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="degree"  class="col-form-label col-md-2">Titulo:</label>
-                <input class="form-control col-md-6" type="text" name="degree" id="degree" required/>
+                <input class="form-control col-md-6" type="text" placeholder="ej: Odontólogo General" name="degree" id="degree" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="school"  class="col-form-label col-md-2">Universidad:</label>
-                <input class="form-control col-md-6" type="text" name="school" id="school" required/>
+                <input class="form-control col-md-6" type="text" name="school" placeholder="ej:  UCSG" id="school" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="phrase"  class="col-form-label col-md-2">Frase Personal:</label>
-                <input class="form-control col-md-6" type="text" name="phrase" id="phrase" required/>
+                <input class="form-control col-md-6" type="text" name="phrase" placeholder="ej: Servir y Proteger" id="phrase" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="picture_url"  class="col-form-label col-md-2">Añadir link  a su imagen de perfil:</label>
-                <input class="form-control col-md-6" type="url" name="picture_url" id="picture_url" required/>
+                <input class="form-control col-md-6" type="url" name="picture_url" placeholder="Copie y pegue la direccion a su foto de perfil de FB o IG" id="picture_url" required/>
                 <div class="col-md-2"></div>
               </div><br>
               <div class="form-row">
                 <div class="col-md-2"></div>
                 <label  for="address"  class="col-form-label col-md-2">Direccion:</label>
-                <input class="form-control col-md-6" type="text" name="address" id="address" required/>
+                <input class="form-control col-md-6" type="text" name="address" placeholder="ej: Ciudad, Calle, Edificio, Nro casa" id="address" required/>
                 <div class="col-md-2"></div>
               </div><br>
-              <!--
+              
               <div class="form-row">
                 <div class="col-md-2"></div>
-                <label  for="id"  class="col-form-label col-md-2">ID de usuario:</label>
-                <input class="form-control col-md-6" type="text" name="id" id="id"/>
-                <div class="col-md-2"></div>
-              </div><br>
-              -->
-              <div class="form-row">
-                <div class="col-md-2"></div>
-                <input type="submit" class="btn btn-primary center col-md-6" id="save" value="guardar"/>
+                <button type="submit" class="btn btn-primary center col-md-8" id="save" > Guardar</button> 
                 <div class="col-md-2"></div>
               </div>
-                
-
             </form><br>
-            
+   
           </div>
 
 

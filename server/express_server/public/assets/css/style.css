@@ -1444,3 +1444,34 @@ h2.active {
 *:focus {
     outline: none;
 } 
+/*NOT BOOTSTRAP */
+.labels-isaac{
+  font-weight:bold;
+  background-color:rgba(102, 200, 245, 0.329);
+}
+/*#00B7FF*/
+.panes-isaac{
+  color: #444444;
+  background-color: rgba(102, 200, 245, 0.329);
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+}
+.panes-isaac:hover{
+
+}
+.login-background{
+  background-image: url('https://image.freepik.com/foto-gratis/dentistas-eligen-equipos-mesa_1150-19659.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+
+}
+.login-card-background{
+  background-color: #e9e8e6;
+  border-radius: 5px;
+}
