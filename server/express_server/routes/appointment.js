@@ -33,6 +33,7 @@ router.get('/byUser/:idUser', async (req, res, next) => {
 
 router.post('/setAppointment', async (req, res, next) => {
   let requestBody = req.body
+  console.log(requestBody);
   try {
     let pacient = await pacientModel.findOne({ where: { id_card_pacient: requestBody.id_card_pacient } });
     if (pacient == null) {
@@ -58,9 +59,16 @@ router.post('/insert', async (req, res, next) => {
   let requestBody = req.body
   try {
     requestBody.state = 0
-    let appointmentTmp = await appointment.create(req.body);
-    await appointmentTmp.save()
-    res.send({ message: 1, infoAppointment: appointmentTmp });
+    console.log(req.body);
+    let appointmentTmp = await appointment.findOne({ where: { id_user: requestBody.id_user, 
+        date: requestBody.date } })
+    if (appointmentTmp == null) {
+      appointmentTmp = await appointment.create(req.body);
+      await appointmentTmp.save()
+      res.send({ message: 1, infoAppointment: appointmentTmp });
+    } else {
+      res.send({ message: 2, infoAppointment: 'Ya existe' });
+    } 
   } catch (err) {
     console.log(err);
     res.send({ message: 0 });

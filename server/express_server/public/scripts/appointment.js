@@ -28,21 +28,21 @@ function startCalendar() {
             omitZeroMinute: false,
             meridiem: 'short'
         },
-        slotDuration: '00:15',
+        slotDuration: '00:20',
         initialDate: Date.now(),
-        slotMinTime: '00:00',
+        slotMinTime: '07:00',
         slotMaxTime: '20:00',
         navLinks: true,
         selectable: true,
         selectMirror: true,
         select: function (arg) { },
         eventClick: function (arg) {  
-            const startDate = dateToInt(arg.event.start);
+            const startDate = dateToInt(arg.event.start); 
             const appointment = appointmentAvaliable.has(startDate);
             if (appointment) {
                 if(appointmentAvaliable.get(startDate).state == 0){
-                   $('#modalAppointment').modal('toggle');
-                    $('#idAppointment').val(appointmentAvaliable.get(startDate).id)                   
+                    $('#modalAppointment').modal('toggle');
+                    $('#idAppointment').val(appointmentAvaliable.get(startDate).id)             
                 } 
             }  
         },

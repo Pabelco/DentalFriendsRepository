@@ -12,7 +12,8 @@ function startCalendar() {
         initialView: 'timeGridWeek',
         allDaySlot: false,
         locale: 'es',
-        nowIndicator: true,
+        nowIndicator: true,  
+        contentHeight: 'auto', 
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -28,21 +29,17 @@ function startCalendar() {
             omitZeroMinute: false,
             meridiem: 'short'
         },
-        slotDuration: '00:15',
+        slotDuration: '00:20',
         initialDate: Date.now(),
-        slotMinTime: '00:00',
+        slotMinTime: '07:00',
         slotMaxTime: '20:00',
         navLinks: true,
         selectable: true,
-        selectMirror: true,
-        select: function (arg) {
-            console.log('123123');
-        },
+        selectMirror: true, 
         dateClick: function (info) {
             alertify.confirm('Agendar cita', 'Desea agendar una cita?', function () {
                 alertify.success('Cita agendada exitosamente')
-                createAppointment(info.dateStr)
-                fillCalendar();
+                createAppointment(info.dateStr) 
             }, noActionAllert).set(aceptOrNot);
         },
         eventClick: function (arg) {
@@ -83,27 +80,7 @@ function deleteAppointment(startDate = '') {
             })  
         }, noActionAllert).set(aceptOrNot);
     }
-}
-
-/*
-    let startDateTmp = dateToInt(startDate);    
-    if (appointmentAvaliable.has(startDateTmp)) {
-        let appointmentSelect = appointmentAvaliable.get(startDateTmp);
-        console.log(appointmentSelect);
-        if (appointmentSelect.state == 0) {
-            alertify.confirm('Agendar cita', 'Desea agendar una cita?', function () {
-                alertify.success('Cita agendada exitosamente')
-                createAppointment(startDate.toISOString())
-                fillCalendar();
-            }, noActionAllert).set(aceptOrNot);
-        } else {
-            alertify.confirm('Eliminar cita', `Desea eliminar esta cita? <br>${printUserDetails(appointmentSelect)}`, function () {
-                alertify.success('Cita eliminada correctamente');
-                fillCalendar();
-            }, noActionAllert ).set(aceptOrNot);
-        }
-    }
-*/
+} 
 
 function printUserDetails(userDetails = {}) {
     if (userDetails.pacient) {
@@ -164,18 +141,7 @@ function addEventsCalendar() {
         });
     });
 }
-
-$('#modalForm').submit(function (e) {
-    e.preventDefault()
-    postFetch(`/appointment/setAppointment`, objectifyForm($(this).serializeArray())).then((res) => {
-        if (res.message == 1) {
-            alertify.success('Cita reservada exitosamente');
-            getAvaliablesAppointment()
-            $('#modalAppointment').modal('toggle');
-        }
-    })
-});
-
+ 
 $('button.fc-next-button').click(function (e) {
     console.log(2);
 });
@@ -183,9 +149,3 @@ $('button.fc-next-button').click(function (e) {
 $('button.fc-prev-button').click(function (e) {
     console.log(1);
 });
-
-
-/* alertify.confirm('Eliminar cita', 'Esta seguro que desea borrar la cita?', function () {
-    arg.event.remove();
-    alertify.success('Cita cancelada');
-}, function () { }); */
