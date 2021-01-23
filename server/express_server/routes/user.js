@@ -81,7 +81,6 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
 router.post('/medicalResume', async (req, res, next) => {
   try {
     let requestBody = req.body;
-    console.log(requestBody)
     const medicalResume = await appointment.findAll({
       attributes: ['id', 'date',],
       where: {
@@ -103,7 +102,56 @@ router.post('/medicalResume', async (req, res, next) => {
       }],
       raw: true,
     });
-    //console.log(medicalResume)
+    for (element in medicalResume){
+      var dateAppointment = medicalResume[element].date
+      var dateToJson = dateAppointment.getDay()+" "
+      switch (dateAppointment.getMonth()){
+        case 0:
+          dateToJson += "Enero";
+          break;
+        case 1:
+          dateToJson += "Febrero";
+          break;
+        case 2:
+          dateToJson += "Marzo";
+          break;
+        case 3:
+          dateToJson += "Abril";
+          break;
+        case 4:
+          dateToJson += "Mayo";
+          break;
+        case 5:
+          dateToJson += "Junio";
+          break;
+        case 6:
+          dateToJson += "Julio";
+          break;
+        case 7:
+          dateToJson += "Agosto";
+          break;
+        case 8:
+          dateToJson += "Septiembre";
+          break;
+        case 9:
+          dateToJson += "Octubre";
+          break;
+        case 10:
+          dateToJson += "Noviembre";
+          break;
+        case 11:
+          dateToJson += "Diciembre";
+          break;
+        default:
+          dateToJson += "Indet.";
+      }
+      dateToJson += " "+dateAppointment.getFullYear()
+      medicalResume[element].date = dateToJson
+      var fullName = medicalResume[element]['pacient.name_pacient']+" "+medicalResume[element]['pacient.lastname_pacient']
+      delete medicalResume[element]['pacient.name_pacient']
+      delete medicalResume[element]['pacient.lastname_pacient']
+      medicalResume[element]['nombrePaciente'] = fullName
+    }
     res.send(medicalResume)
     //res.json(responseParsed)
     /*res.render(`medicalRecord`, { resume: responseParsed }, function (err, html) {

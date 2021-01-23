@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Agendamiento - DentalFriends</title>
+    <title>Resumen Medico de Pacientes - DentalFriends</title>
     <meta content="" name="descriptison">
     <meta content="" name="keywords">
 
@@ -85,82 +85,83 @@
                     <input id="filterMedicalResume" placeholder="Cédula/NombrePaciente/CorreoPaciente" maxlength="10" minlength="3" class="form-control" type="text">
                   </div>
                   <div class="col-md-2 col-4" >
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <button id="buttonSearchMedicalResume" type="submit" class="btn btn-primary">Buscar</button>
                   </div>
                   <div class="col-md-2"></div>
               </div>
             </form><br>
+          </div>
 
+          <div>
             <table id="medicalResumeTable" class="table">
-            <tr>
-              <th>Id</th>
-              <th>Fecha</th>
-              <th>Paciente</th>
-              <th class="d-flex justify-content-center">Detalles</th>
-            </tr>
-            <tr>
-              <td>2021-01-19</td>
-              <td>Pabelco</td>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Detalles
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2021-01-19</td>
-              <td>luis</td>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Detalles
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2021-01-19</td>
-              <td>rogwi</td>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Detalles
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2021-01-19</td>
-              <td>Bryan</td>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Detalles
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>2021-01-19</td>
-              <td>Issac</td>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                  Detalles
-                </button>
-              </td>
-            </tr>
-            <% if (resume) { %>
-              <% console.log(resume) %>
-              <% for(var i = 0; i < resume.length; i++) { %>
-                <% if (resume[i] != null) { %>
-                  <tr>
-                    <td><%= resume[i].date %></td>
-                    <td><%= resume[i].id_user %></td>
-                  </tr>
+              <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Paciente</th>
+                <th class="d-flex justify-content-center">Detalles</th>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>Pabelco</td>
+                <td></td>
+                <td class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>luis</td>
+                <td></td>
+                <td class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>rogwi</td>
+                <td></td>
+                <td class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>Bryan</td>
+                <td></td>
+                <td class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2021-01-19</td>
+                <td>Issac</td>
+                <td></td>
+                <td class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Detalles
+                  </button>
+                </td>
+              </tr>
+              <% if (resume) { %>
+                <% console.log(resume) %>
+                <% for(var i = 0; i < resume.length; i++) { %>
+                  <% if (resume[i] != null) { %>
+                    <tr>
+                      <td><%= resume[i].date %></td>
+                      <td><%= resume[i].id_user %></td>
+                    </tr>
+                  <% } %>
                 <% } %>
               <% } %>
-            <% } %>
-            </table>
-            
+              </table>
           </div>
         </div>
       </section><!-- End Portfolio Section -->
@@ -203,6 +204,7 @@
     <script src="../scripts/alertify.min.js"></script>
     <script src="../scripts/utils.js"></script>
     <script src="../scripts/medicalResume.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
 
