@@ -4,15 +4,15 @@
 
 CREATE TABLE public.pacient
 (
-	id SERIAL,
-    id_card_pacient character varying(20),
-    name_pacient character varying(50),
-    lastname_pacient character varying(50),
-    age_pacient integer NOT NULL,
-    gender_pacient character(1),
-    address_pacient character varying(100),
-    phone_pacient character varying(10),
-    email_pacient character varying(80),
+    id integer NOT NULL DEFAULT nextval('pacient_id_seq'::regclass),
+    id_card_pacient character varying(20) COLLATE pg_catalog."default",
+    name_pacient character varying(50) COLLATE pg_catalog."default",
+    lastname_pacient character varying(50) COLLATE pg_catalog."default",
+    age_pacient integer,
+    gender_pacient character(1) COLLATE pg_catalog."default",
+    address_pacient character varying(100) COLLATE pg_catalog."default",
+    phone_pacient character varying(10) COLLATE pg_catalog."default",
+    email_pacient character varying(80) COLLATE pg_catalog."default",
     details_pacient json,
     CONSTRAINT pacient_pkey PRIMARY KEY (id)
 )
