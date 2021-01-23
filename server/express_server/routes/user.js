@@ -5,6 +5,7 @@ const userDetailsModel = require("../models/userDetails")
 const pacientModel = require('../models/pacient')
 const appointment = require('../models/appointment')
 var validator = require('validator');
+const { Op } = require("sequelize");
 
 const jwtSecurity = require('../configs/jwtAuth.js')
 const user = require('../models/user')
@@ -80,18 +81,35 @@ router.put('/formProfile', jwtSecurity.authenticateJWT , async (req, res, next) 
 router.post('/medicalResume', async (req, res, next) => {
   try {
     let requestBody = req.body;
+    console.log(requestBody)
     const medicalResume = await appointment.findAll({
-      where: { '$pacient.id_card_pacient$': requestBody.id_card_pacient },
-      include: [{ model: pacient},{model: user}],
+      attributes: ['id', 'date',],
+      where: {
+        [Op.or]:[
+          {'$pacient.id_card_pacient$':{
+            [Op.like]: requestBody.filterMedicalResume,  
+          }},
+          {'$pacient.name_pacient$':{
+            [Op.like]: requestBody.filterMedicalResume,
+          }},
+          {'$pacient.email_pacient$':{
+            [Op.like]: requestBody.filterMedicalResume,
+          }},
+        ],
+      },
+      include: [{
+        model: pacient,
+        attributes: [ 'name_pacient', 'lastname_pacient']
+      }],
       raw: true,
-
     });
     //console.log(medicalResume)
+    res.send(medicalResume)
     //res.json(responseParsed)
     /*res.render(`medicalRecord`, { resume: responseParsed }, function (err, html) {
       res.send(responseParsed)
     })*/
-    res.send(medicalResume)
+    //res.send(medicalResume)
     //res.render(`medicalRecord`,{resume: responseParsed})
   } catch (error) {
     console.log(error)
