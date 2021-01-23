@@ -8,12 +8,7 @@ var validator = require('validator');
 
 const jwtSecurity = require('../configs/jwtAuth.js')
 const user = require('../models/user')
-const pacient = require('../models/pacient')
-//const { json } = require('sequelize/types')
-
-/*
-Get methods
-*/
+const pacient = require('../models/pacient') 
 
 router.get('/medicalResume', function (req, res, next) {
   res.render(`medicalResume`, {resume: {}})
@@ -140,8 +135,7 @@ router.get('/:id', async (req, res, next) => {
 router.put('/formRecord', jwtSecurity.authenticateJWT , async (req, res, next) => { 
   console.log();('entre aqui')
   let requestBody = req.body;
-  console.log(requestBody.id_card_pacient);
-  //update by id_card_pacient
+  console.log(requestBody.id_card_pacient); 
   pacientModel.update(
     {id_card_pacient: requestBody.id_card_pacient,
      name_pacient: requestBody.name_pacient,

@@ -5,9 +5,7 @@ const userDetailsModel = require("../models/userDetails")
 const pacientModel = require('../models/pacient')
 const appointment = require('../models/appointment')
 var validator = require('validator');
-
-const jwtSecurity = require('../configs/jwtAuth.js')
-
+ 
 router.get('/byUser/:idUser', async (req, res, next) => {
     try {
         if (validator.isInt(req.params.idUser)) {

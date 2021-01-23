@@ -4,9 +4,7 @@ var router = express.Router()
 var sequelize = require('../models/db')
 const jwtSecurity = require('../configs/jwtAuth.js');
 const userModel = require('../models/user');
-const userDetailsModel = require('../models/userDetails');
-const pacientModel = require('../models/pacient')
-
+const userDetailsModel = require('../models/userDetails');  
 /* 
  GET METHODS 
 */
@@ -30,6 +28,10 @@ router.get('/appointment', function (req, res, next) {
   res.render(`appointment`, {})
 });
 
+router.get('/adminAppointment', function (req, res, next) {
+  res.render(`adminAppointment`, {})
+});
+
 router.get('/dentalcare', function (req, res, next) {
   res.render(`dentalcare`, {})
 });
@@ -38,13 +40,17 @@ router.get('/portafolio', function (req, res, next) {
   res.render(`portafolio`, {})
 });
 
-router.get('/professional', function (req, res, next) { //revisar mvc y mover .fidnall a un controller
+router.get('/treatment', function (req, res, next) {
+  res.render(`treatment`, {})
+});
+
+router.get('/professional', function (req, res, next) { 
   userModel.findAll({
     include: {
       model: userDetailsModel,
       required: true
     },
-    raw: true //para devolver solo DataValues, no instancias
+    raw: true  
   }).then(data => {
     console.log(data);
     res.render(`professional`, { title: "profesionales", docs: data })
@@ -55,39 +61,27 @@ router.get('/professional', function (req, res, next) { //revisar mvc y mover .f
     });
   });
 });
-
-
-
-
-router.get('/treatment', function (req, res, next) {
-  res.render(`treatment`, {})
-});
-
-
-
+ 
 /* 
  POST METHODS 
 */
 
 router.post('/login', async (req, res, next) => {
   let requestBody = req.body
-  sequelize.query(`select login_user ('${requestBody.username}', '${requestBody.password}')`)
-    .then(response => {
-      if (response[1].rowCount > 0) {
-        const newUser = {
-          username: requestBody.username,
-          token: jwtSecurity.jwt.sign({ username: requestBody.username, role: requestBody.password },
-            jwtSecurity.keySecret)
-        };
-        req.session.user = newUser
-        res.send(newUser)
-      } else {
-        res.send({})
-      }
-    }).catch(err => {
-      console.log(err.message)
-      res.send({})
-    });
+  const [results, metadata] = await sequelize.query(`select login_user ('${requestBody.username}', '${requestBody.password}')` )  
+  if (results.length > 0) {
+    const newUser = {
+      idUser: results[0].login_user,
+      username: requestBody.username,
+      token: jwtSecurity.jwt.sign({ username: requestBody.username, role: requestBody.password },
+        jwtSecurity.keySecret)
+    };
+    console.log(newUser);
+    req.session.user = newUser
+    res.send(newUser)
+  } else {
+    res.send({})
+  } 
 })
 
 router.post('/register', async (req, res, next) => {

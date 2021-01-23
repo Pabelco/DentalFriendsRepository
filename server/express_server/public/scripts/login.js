@@ -20,6 +20,7 @@ $("#formLogin").submit(function (e) {
             if (res.token !== undefined) {  
                 sessionStorage.setItem("username", res.username) 
                 sessionStorage.setItem("token", res.token) 
+                sessionStorage.setItem("idUser", res.idUser) 
                 location.replace(`/home`)            
             } else {
                 alertify.error('Credenciales invalidas');             
