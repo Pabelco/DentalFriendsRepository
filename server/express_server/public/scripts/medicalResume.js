@@ -3,15 +3,15 @@ let resume = {}
 $("#searchMedicalResume").submit(async function (e) {
     e.preventDefault();
     postFetch("/user/medicalResume",{
-        id_card_pacient: $('#id_card_pacient').val(),
+        filterMedicalResume: $('#filterMedicalResume').val(),
     }).then((res) => {
         resume = res
         prueba()
-        //document.getElementById("medicalResumeTable").table.location.reload(true);
-        //location.reload();
-    })
+    }).catch(function() {
+        alert("Error contacte con administrador");
+    });
 });
 
 function prueba(){
-    console.log(resume)
+    //$("#medicalResumeTable").load( "ajax/test.html", function() {alert( "Load was performed." );});
 }
