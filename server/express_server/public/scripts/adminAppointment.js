@@ -36,27 +36,18 @@ function startCalendar() {
         selectable: true,
         selectMirror: true,
         select: function (arg) {
-            // guardar en base
-            console.log('select');   
+            console.log('123123');
         },
-        eventClick: function (arg) {            
-            const startDate = dateToInt(arg.event.start);
-            const appointment = appointmentAvaliable.has(startDate);  
-            console.log('eventClick');   
-            if (appointment) {
-                if (appointmentAvaliable.get(startDate).state == 0) {
-                    $('#modalAppointment').modal('toggle');
-                    $('#idAppointment').val(appointmentAvaliable.get(startDate).id)
-                } else {
-                    alertify.confirm('Agendar cita', 'Desea atender una cita a esa hora?', function () {
-                        // grabar en base
-                        alertify.success('Cita agendada exitosamente')
-                        fillCalendar()
-                    }, function () {
-                        alertify.error('Error inesperado, vuelva a intentar')
-                    });
-                }
-            }  
+        dateClick: function (info) {
+            alertify.confirm('Agendar cita', 'Desea agendar una cita?', function () {
+                alertify.success('Cita agendada exitosamente')
+                createAppointment(info.dateStr)
+                fillCalendar();
+            }, noActionAllert).set(aceptOrNot);
+        },
+        eventClick: function (arg) {
+            let dateStart = arg.event.start
+            deleteAppointment(dateStart);
         },
         customButtons: {
             prev: {
@@ -79,6 +70,68 @@ function startCalendar() {
         events: []
     });
     calendar.render();
+}
+
+function deleteAppointment(startDate = '') {
+    let startDateTmp = dateToInt(startDate);
+    if (appointmentAvaliable.has(startDateTmp)) {
+        let appointmentSelect = appointmentAvaliable.get(startDateTmp);
+        alertify.confirm('Eliminar cita', `Desea eliminar esta cita? <br>${printUserDetails(appointmentSelect)}`, function () {
+            deleteFetch(`/appointment/delete`, { id: appointmentSelect.id }).then((res) => {
+                alertify.success('Cita eliminada correctamente');
+                fillCalendar();
+            })  
+        }, noActionAllert).set(aceptOrNot);
+    }
+}
+
+/*
+    let startDateTmp = dateToInt(startDate);    
+    if (appointmentAvaliable.has(startDateTmp)) {
+        let appointmentSelect = appointmentAvaliable.get(startDateTmp);
+        console.log(appointmentSelect);
+        if (appointmentSelect.state == 0) {
+            alertify.confirm('Agendar cita', 'Desea agendar una cita?', function () {
+                alertify.success('Cita agendada exitosamente')
+                createAppointment(startDate.toISOString())
+                fillCalendar();
+            }, noActionAllert).set(aceptOrNot);
+        } else {
+            alertify.confirm('Eliminar cita', `Desea eliminar esta cita? <br>${printUserDetails(appointmentSelect)}`, function () {
+                alertify.success('Cita eliminada correctamente');
+                fillCalendar();
+            }, noActionAllert ).set(aceptOrNot);
+        }
+    }
+*/
+
+function printUserDetails(userDetails = {}) {
+    if (userDetails.pacient) {
+        return `
+        <br> 
+        <table class="table table-sm table-bordered table-hover">        
+            <tr>
+                <td>Cedula</td>
+                <td>${userDetails.pacient.id_card_pacient} </td>
+            </tr>
+            <tr>
+                <td>Celular</td>
+                <td>${userDetails.pacient.phone_pacient}</td>
+            </tr>
+            <tr>
+                <td>Correo</td>
+                <td>${userDetails.pacient.email_pacient}</td>
+            </tr>
+        </table> 
+            `
+    }
+    return ``
+}
+
+function createAppointment(dateIso = '') {
+    postFetch(`/appointment/insert`, { id_user: sessionStorage.getItem('idUser'), date: dateIso }).then((res) => {
+        fillCalendar();
+    })
 }
 
 function fillCalendar() {

@@ -17,6 +17,6 @@ var pacient = db.define('pacient', {
     {
         timestamps: false,
         freezeTableName: true
-    })
-    
+    }) 
+
 module.exports = pacient
