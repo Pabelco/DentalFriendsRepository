@@ -8,7 +8,7 @@
   "dependencies": {
     "@admin-bro/express": "^3.1.0",
     "@admin-bro/sequelize": "^1.1.2",
-    "admin-bro": "^3.3.1",
+    "admin-bro": "^3.4.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
@@ -19,12 +19,12 @@
     "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "node-sass-middleware": "0.11.0",
+    "nodemailer": "^6.4.2",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "tslib": "^2.1.0",
-    "validator": "^13.5.2",
-    "nodemailer": "^6.4.2"
+    "validator": "^13.5.2"
   },
   "nodemonConfig": {
     "ignore": [
